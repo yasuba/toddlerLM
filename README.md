@@ -14,7 +14,7 @@ Examples:
 - "It's sunny outside", happy
 - "I fell down and scraped my knee", sad
 - "My ice cream fell on the ground", sad
-- "Mommy gave me a cookie", happy
+- "Mummy gave me a biscuit", happy
 
 Data volume: Start with a few dozen sentences. Because Spark is designed for large-scale data, it will process this small dataset instantly, allowing you to focus on the logic.
 
