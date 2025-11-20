@@ -29,9 +29,10 @@ sentence,sentiment
 "Yay, we are going to the park!",happy
 "I like ducks",happy
 "I like chocolate",happy
-"I love my toy", happy
-"My dog ran away", sad
-"It's sunny outside", happy
-"I fell down and scraped my knee", sad
-"My ice cream fell on the ground", sad
-"Mummy gave me a biscuit", happy
+"I love my toy",happy
+"My dog ran away",sad
+"It's sunny outside",happy
+"I fell down and scraped my knee",sad
+"My ice cream fell on the ground",sad
+"Mummy gave me a biscuit",happy
+"The unicorn's not changing colours",sad
