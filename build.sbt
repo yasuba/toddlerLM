@@ -1,7 +1,5 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.3.6"
-
 ThisBuild / scalafmtOnCompile := true
 
 val CirceVersion   = "0.14.15"
@@ -15,8 +13,17 @@ lazy val root = (project in file("."))
   .settings(name := "sparkle")
   .aggregate(service, spark)
 
+lazy val common = (project in file("common"))
+  .settings(
+    name := "common"
+  )
+  .settings(
+    // nothing fancy here yet
+  )
+
 lazy val spark   = (project in file("spark"))
   .settings(
+    scalaVersion := "2.13.16",
     libraryDependencies ++= Seq(
       ("org.apache.spark" %% "spark-core"  % SparkVersion).cross(CrossVersion.for3Use2_13),
       ("org.apache.spark" %% "spark-mllib" % SparkVersion).cross(CrossVersion.for3Use2_13),
@@ -26,6 +33,7 @@ lazy val spark   = (project in file("spark"))
 
 lazy val service = (project in file("service"))
   .settings(
+    scalaVersion := "3.3.6",
     libraryDependencies ++= Seq(
       "io.circe"      %% "circe-generic"       % CirceVersion,
       "io.circe"      %% "circe-parser"        % CirceVersion,

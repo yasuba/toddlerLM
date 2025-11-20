@@ -1,7 +1,7 @@
 import cats.effect.*
 import cats.implicits.*
 import ciris.*
-import client.LlmClient
+import client.{LlmClient, SparkClient}
 import com.comcast.ip4s.{Hostname, Port}
 import fs2.io.net.Network
 import org.http4s.CacheDirective.`max-age`
@@ -43,7 +43,8 @@ object Main extends IOApp {
       config     <- Resource.eval(serviceConfig.load[IO])
       httpClient <- EmberClientBuilder.default[IO].build
       llmClient   = LlmClient[IO](httpClient, config)
-    } yield SentimentService(llmClient)
+      sparkClient = SparkClient[IO]()
+    } yield SentimentService(sparkClient, llmClient)
 
     sentimentService.use { sentiment =>
       EmberServerBuilder
