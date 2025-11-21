@@ -1,11 +1,10 @@
 package model
 
 import client.LlmClient.{ChatChoice, ChatMessage, ChatResponse}
-import io.circe.parser.*
+import io.circe.parser._
 import munit.FunSuite
 
 class CodecsTest extends FunSuite {
-  import Codecs.given
 
   test("ChatResponse decoder should successfully decode valid JSON") {
     val json = """{

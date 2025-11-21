@@ -1,7 +1,7 @@
 package model
 
 import io.circe._
-import io.circe.generic.semiauto.*
+import io.circe.generic.semiauto._
 
 final case class ClassificationResult(
   phrase: String,
@@ -12,5 +12,5 @@ final case class ClassificationResult(
 )
 
 object ClassificationResult {
-  given Encoder[ClassificationResult] = deriveEncoder
+  implicit val encoder: Encoder[ClassificationResult] = deriveEncoder
 }

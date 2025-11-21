@@ -1,6 +1,6 @@
-import cats.effect.*
-import cats.implicits.*
-import ciris.*
+import cats.effect._
+import cats.implicits._
+import ciris._
 import client.{LlmClient, SparkClient}
 import com.comcast.ip4s.{Hostname, Port}
 import fs2.io.net.Network
@@ -18,9 +18,9 @@ import service.SentimentService
 import scala.concurrent.duration.{Duration, DurationInt}
 
 object Main extends IOApp {
-  given logger: SelfAwareStructuredLogger[IO] = Slf4jLogger.getLogger[IO]
+  implicit val logger: SelfAwareStructuredLogger[IO] = Slf4jLogger.getLogger[IO]
 
-  given uriConfigDecoder: ConfigDecoder[String, Uri] =
+  implicit val uriConfigDecoder: ConfigDecoder[String, Uri] =
     ConfigDecoder[String].mapEither { (key, value) =>
       Uri.fromString(value).leftMap { parseFailure =>
         ConfigError(s"Invalid URI for key '$key': ${parseFailure.details}")
