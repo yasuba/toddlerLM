@@ -1,33 +1,65 @@
-### Project: Sentiment Analyzer
+## toddlerLM — Understanding next-token prediction with toddler speech
 
-Goal: Create a simple Spark application that classifies a child's sentences as either "happy" or "sad."
+A tiny, inspectable language model implemented in Scala, trained on toddler-style utterances, designed to explore tokens, context, and how large language models work under the hood.
 
-#### Step 1: Dataset
+Note: This is a toy model for learning purposes.
 
-Data format: A CSV file, each line has the text followed by a label ("happy" or "sad").
+### Motivation
+I wanted to understand what language models really do.
+Instead of using an API, I built something small enough to inspect end-to-end.”
 
-Examples:
+toddlerLM helps explore:
 
-- "I love my toy", happy
-- "My dog ran away", sad
-- "It's sunny outside", happy
-- "I fell down and scraped my knee", sad
-- "My ice cream fell on the ground", sad
-- "Mummy gave me a biscuit", happy
+- Tokenisation (words, characters, subwords)
 
-#### Step 2: Features
+- Context windows (n-grams)
 
-- Tokenizer: To split each sentence into individual words
-- StopWordsRemover: To remove common words like "the," "a," "is," etc.
-- HashingTF: To convert the cleaned words into numerical feature vectors
+- Next-token prediction
 
-#### Step 3: Train the machine learning model
+- Emergent patterns in small data
 
-- NaiveBayes: The multinomial Naive Bayes classifier is a simple but effective algorithm for text classification.
-- Pipeline integration: Put the tokenizer, stop words remover, and HashingTF steps into a single Pipeline.
+### Corpus
 
-#### Step 4: Make predictions
+The model is trained on a small set of toddler-style utterances. Example lines:
 
-- Running the app will output a command line prompt to ask how the user is doing today.
-- The Spark pipeline will predict the sentiment of the user input.
-- TODO: Based on the sentiment prediction, an appropriate message will be returned.
+- "The duck is crying because he lost his mummy."
+- "My biscuit's broken"
+
+This corpus is intentionally tiny so you can see exactly how the model behaves.
+
+### How it works
+
+1. **Tokenisation** 
+    
+    Converts sentences into tokens (currently word-based). 
+
+2. **Context windows** 
+   
+    For each token, track the previous N tokens (configurable).
+
+3. **Counts & probabilities** 
+   
+    Counts how often each token follows a context and converts counts to probabilities.
+
+4. **Prediction** 
+   
+    Given a context, the model outputs the most likely next token(s).
+
+### Usage
+
+`sbt run`
+
+Follow the prompt to type a sentence and see the model’s predicted next token(s).
+
+### Learning outcomes
+
+* Understand what a “token” really is
+* Explore simple next-token models (n-grams)
+* See why context matters
+* Observe “failure modes” of small models before scaling
+
+### Optional enhancements
+
+* Character or subword tokenisers
+* Text generation from initial seed token
+* Analysis of token probabilities and context coverage
