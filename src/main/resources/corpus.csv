@@ -163,3 +163,14 @@
 | 34          | not       | negation     | sad       |
 | 34          | changing  | verb         | sad       |
 | 34          | colours   | noun         | sad       |
+| 35          | I         | pronoun      | happy     |
+| 35          | want      | verb         | happy     |
+| 35          | to        | -            | happy     |
+| 35          | poop      | verb         | happy     |
+| 35          | in        | -            | happy     |
+| 35          | a         | -            | happy     |
+| 35          | nappy     | noun         | happy     |
+| 36          | I         | pronoun      | sad       |
+| 36          | want      | verb         | sad       |
+| 36          | my        | pronoun      | sad       |
+| 36          | mummy     | noun         | sad       |
