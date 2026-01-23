@@ -1,19 +1,12 @@
 package model
 
+import model.TestData.contexts
 import munit.FunSuite
 
 class ContextAnalyzerSpec extends FunSuite {
 
   test("ContextAnalyzer can count the frequency of next tokens for any given context") {
-    val corpus = scala.io.Source
-      .fromResource("corpus.csv")
-      .getLines()
-      .toList
-
-    val tokenized = Tokenizer(corpus).tokenizeCSV
-    val contexts  = tokenized.map(t => ContextBuilder.nGram(1, t._2)).toList
-
-    val freq     = ContextAnalyzer.countFrequencies(contexts)
+    val freq = ContextAnalyzer.countFrequencies(contexts)
 
     val obtained = freq
       .map { case (ctx, m) =>
