@@ -1,28 +1,20 @@
 ThisBuild / version      := "0.1.0-SNAPSHOT"
-ThisBuild / scalaVersion := "2.13.17"
+ThisBuild / scalaVersion := "3.3.7"
 
 ThisBuild / scalafmtOnCompile := true
 
-val CirceVersion       = "0.14.15"
-val CirisVersion       = "3.11.1"
-val Http4sVersion      = "0.23.33"
-val LogbackVersion     = "1.5.21"
-val MunitVersion       = "1.2.1"
-val SkunkVersion       = "0.6.4"
+val CatsVersion       = "2.13.0"
+val CatsEffectVersion = "3.6.3"
+val LogbackVersion    = "1.5.21"
+val MunitVersion      = "1.2.1"
 
 lazy val root = (project in file("."))
   .settings(
     name := "toddlerLM",
     libraryDependencies ++= Seq(
-      "io.circe"         %% "circe-generic"       % CirceVersion,
-      "io.circe"         %% "circe-parser"        % CirceVersion,
-      "is.cir"           %% "ciris"               % CirisVersion,
-      "org.http4s"       %% "http4s-circe"        % Http4sVersion,
-      "org.http4s"       %% "http4s-dsl"          % Http4sVersion,
-      "org.http4s"       %% "http4s-ember-client" % Http4sVersion,
-      "org.http4s"       %% "http4s-ember-server" % Http4sVersion,
-      "org.tpolecat"     %% "skunk-core"          % SkunkVersion,
-      "org.scalameta"    %% "munit"               % MunitVersion   % Test,
-      "ch.qos.logback"    % "logback-classic"     % LogbackVersion % Runtime
+      "org.typelevel" %% "cats-core"       % CatsVersion,
+      "org.typelevel" %% "cats-effect"     % CatsEffectVersion,
+      "org.scalameta" %% "munit"           % MunitVersion   % Test,
+      "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     )
   )

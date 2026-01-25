@@ -1,11 +1,11 @@
 package model
 
-trait ProbabilityAnalyzer  {
+trait Predictions {
   def nextTokenPredictions(tokens: List[String]): Map[String, Double]
 }
 
-object ProbabilityAnalyzer {
-  def apply(contextsAndTokens: List[Map[Context, Seq[String]]]): ProbabilityAnalyzer = new ProbabilityAnalyzer {
+object Predictions {
+  def apply(contextsAndTokens: List[Map[Context, Seq[String]]]): Predictions = new Predictions {
     def nextTokenPredictions(tokens: List[String]): Map[String, Double] = {
       val probabilityTable = ProbabilityBuilder.calculateProbabilities(contextsAndTokens)
 

@@ -1,23 +1,21 @@
 package model
 
 sealed trait Tokenizer {
-  def tokenizeCSV: Map[Int, Seq[String]]
+  def tokenizeCSV: Map[Int, List[String]]
 }
 
 case object Tokenizer {
   def apply(corpus: List[String]): Tokenizer =
     new Tokenizer {
-      override def tokenizeCSV: Map[Int, Seq[String]] =
+      override def tokenizeCSV: Map[Int, List[String]] =
         corpus
-          .drop(1)
-          .map { line =>
-            val cols       = line.replaceAll(" ", "").split('|').tail.map(_.trim)
-            val sentenceId = cols(0).toInt
-            val word       = cols(1)
-            sentenceId -> word
+          .flatMap { line =>
+            val cols = line.split('|').toList.headOption.toList
+            cols.map(_.trim)
           }
-          .groupBy(_._1)
-          .map { case (sid, pairs) => sid -> pairs.map(_._2) }
+          .zipWithIndex
+          .map { case (col, idx) => (idx + 1) -> col.split(" ").toList }
+          .toMap
     }
 }
 
