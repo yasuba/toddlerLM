@@ -10,7 +10,7 @@ class TokenizerSpec extends FunSuite {
       .fromResource("corpus.csv")
       .getLines()
       .toList
-      .take(13)
+      .take(2)
 
     val obtained = Tokenizer(corpus).tokenizeCSV
     val expected = Map(1 -> List("The", "duck", "is", "crying", "because", "he", "lost", "his", "mummy"), 2 -> List("My", "biscuit's", "broken"))

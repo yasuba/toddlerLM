@@ -1,0 +1,59 @@
+It's important to have the right sort of phrases in the corpus, even though it's tiny.
+For example, if every phrase uses different words, the alogrithm won't be able to learn anything useful.
+On the other hand, if every phrase is identical, the algorithm won't be able to generalize to new phrases.
+A good corpus will have a mix of similar and different phrases, allowing the algorithm to learn patterns
+ while still being able to generalize. **The model needs overlap and repetition to learn. My model couldn't learn
+ anything until I increased structural repetition in the data.**
+
+  - LLMs learn patters not meaning.
+
+After building the initial model - Tokenizer, ContextBuilder, ContextAnalyzer, ProbabilityBuilder and Predictions,
+these allow toddlerLM to, given a context, predict what are the likely next tokens.
+
+
+#### TODO
+ - split the corpus into real and synthetic data (merge for training but separate for a talking point: "This is real
+ toddler data. This is slightly fake toddler data. The fake one actually makes the model work better." - link to
+ real life LLMs.)
+
+#### Gotchas
+
+1.
+```
+ContextBuilder.nGram(tokens.size, tokenized.toList.flatMap(_._2))
+```
+
+this is passing a single list of all words. List("I", "want", "a", "biscuit", "I", "like", "swings") etc.
+The model thinks it is one giant sentence. Doing this destroyed the structure of the data, causing the model to
+ learn transitions that never happened in real life. Therefore when trying to create a
+ ProbabilityTable and generate new setences, the Context was only ever linked to one token.
+In a real LLM, boundary tokens are used to separate sentences. Here, I fixed it by passing a List[List[String]].
+
+2.
+The model eventually generates a context it has never seen before. My model is able to answer:
+ "Given a context I have seen in training, what comes next?" But when it generates a new context, that doesn't exist in
+the ProbabilityTable, the **out-of-vocabulary / unseen context problem** occurs. Every n-gram model has this problem.
+LLMs are only defined on the distribution they were trained on. Everything outside of that is guessing, smoothing, or
+ hallucination. My model sometimes crashed because it generated a situation it had never experienced before.
+ I changed the model to first try to remember less by generating probabilities based on ever-decreasing nGram size.
+ If that still fails, I taught it to change the subject and start talking about something else.
+
+
+#### Future stuff to make this a mini computational linguistics research project:
+Add:
+
+simple evaluation metrics
+
+probes (“does it learn plural?”)
+
+controlled corpora (English vs Japanese?)
+
+Write:
+
+a short README like a paper
+
+“What I was testing”
+
+“What failed”
+
+“What surprised me”

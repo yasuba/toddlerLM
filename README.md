@@ -22,8 +22,8 @@ toddlerLM helps explore:
 
 The model is trained on a small set of toddler-style utterances. Example lines:
 
-- "The duck is crying because he lost his mummy."
-- "My biscuit's broken"
+- "I want my mummy."
+- "My biscuit's broken."
 
 This corpus is intentionally tiny so you can see exactly how the model behaves.
 
