@@ -1,65 +1,46 @@
 ## toddlerLM — Understanding next-token prediction with toddler speech
 
-A tiny, inspectable language model implemented in Scala, trained on toddler-style utterances, designed to explore tokens, context, and how large language models work under the hood.
+`toddlerLM` is a toy next-token language model written in Scala. It explores how language models work under the hood by 
+experimenting with tokens, context windows (n-grams), probabilities and text generation.
 
-Note: This is a toy model for learning purposes.
+The corpus is based on real (and lightly augmented) things my toddler has said.
 
-### Motivation
-I wanted to understand what language models really do.
-Instead of using an API, I built something small enough to inspect end-to-end.”
+#### What it does
 
-toddlerLM helps explore:
+At its core, `toddlerLM` is a next-token predictor: given a sequence of tokens, it predicts the most likely next token 
+based on patterns in the training data.
 
-- Tokenisation (words, characters, subwords)
+By repeatedly predicting and feeding the output back in, it can also generate text.
 
-- Context windows (n-grams)
+This is the same basic mechanism used by large language models like GPT, just in the smallest possible form.
 
-- Next-token prediction
+#### How it works
 
-- Emergent patterns in small data
+1. Tokenise a small toddler corpus
 
-### Corpus
+2. Build n-gram contexts
 
-The model is trained on a small set of toddler-style utterances. Example lines:
+3. Count and normalise into probabilities
 
-- "I want my mummy."
-- "My biscuit's broken."
+4. Predict next tokens
 
-This corpus is intentionally tiny so you can see exactly how the model behaves.
+5. Generate text autoregressively
 
-### How it works
-
-1. **Tokenisation** 
-    
-    Converts sentences into tokens (currently word-based). 
-
-2. **Context windows** 
-   
-    For each token, track the previous N tokens (configurable).
-
-3. **Counts & probabilities** 
-   
-    Counts how often each token follows a context and converts counts to probabilities.
-
-4. **Prediction** 
-   
-    Given a context, the model outputs the most likely next token(s).
-
-### Usage
-
+#### Running it
 `sbt run`
 
-Follow the prompt to type a sentence and see the model’s predicted next token(s).
+Enter a seed phrase, for example:
 
-### Learning outcomes
+> I want
 
-* Understand what a “token” really is
-* Explore simple next-token models (n-grams)
-* See why context matters
-* Observe “failure modes” of small models before scaling
+And the model will generate a continuation, e.g.:
 
-### Optional enhancements
+> I want a cuddle again play with me
 
-* Character or subword tokenisers
-* Text generation from initial seed token
-* Analysis of token probabilities and context coverage
+#### Unknown contexts
+
+If the model generates a context it has never seen before, it:
+
+1. Backs off to a smaller context
+
+2. If that fails, picks a random known context and continues
