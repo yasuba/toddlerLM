@@ -10,17 +10,15 @@ class ContextAnalyzerSpec extends FunSuite {
 
     val obtained = freq
       .map { case (ctx, m) =>
-        ctx -> m.filter { case (_, count) => count > 1 }
+        ctx -> m.filter { case (_, count) => count >= 3 && count <= 4 }
       }
       .filter { case (_, m) => m.nonEmpty }
 
     val expected = Map(
-      Context(List("go"))    -> Map("on" -> 2),
-      Context(List("don't")) -> Map("like" -> 3),
-      Context(List("want"))  -> Map("to" -> 3),
-      Context(List("ice"))   -> Map("cream" -> 2),
-      Context(List("on"))    -> Map("the" -> 2),
-      Context(List("I"))     -> Map("want" -> 2, "don't" -> 4, "love" -> 2, "like" -> 3)
+      Context(List("love")) -> Map("my" -> 4),
+      Context(List("I"))    -> Map("feel" -> 4),
+      Context(List("to"))   -> Map("go" -> 3),
+      Context(List("That")) -> Map("is" -> 3)
     )
 
     assertEquals(obtained, expected)
