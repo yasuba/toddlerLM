@@ -5,7 +5,10 @@ import model.{Generator, Tokenizer}
 import scala.io.StdIn
 
 object Main extends IOApp {
-  private def prompt(msg: String): IO[String] = IO.blocking(StdIn.readLine(msg))
+  private def prompt(msg: String): IO[String] = IO.blocking {
+    print(msg)
+    scala.io.StdIn.readLine()
+  }
 
   val corpus: List[String] = scala.io.Source
     .fromResource("corpus.csv")

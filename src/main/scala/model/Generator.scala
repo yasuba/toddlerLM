@@ -14,42 +14,50 @@ object Generator {
   def apply(tokens: List[String], tokenizedCorpus: Map[Int, List[String]]): Generator = new Generator {
 
     /*
-      How to generate the next tokens - this can be done greedily (deterministic) which means you pick the most likely token or sampling (probabilistic) where you randomly sample according to probabilities
+      How to generate the next tokens - this can be done greedily (deterministic) which means you pick the most likely
+      token or sampling (probabilistic) where you randomly sample according to probabilities
       Start with greedy first
      */
 
     def context(nGramSize: Int): List[Map[Context, Seq[String]]]                       = ContextBuilder.nGram(nGramSize, tokenizedCorpus.toList.map(_._2))
     def mkProbabilityTable(context: List[Map[Context, Seq[String]]]): ProbabilityTable = ProbabilityBuilder.calculateProbabilities(context)
 
-    // this will generate a new table with a smaller nGram than the previous one in case the current context cannot be found
-    // in the probabilityTable. This is known as the backoff model, which is a classic NLP strategy.
-    val probabilityTable: ProbabilityTable = mkProbabilityTable(context(tokens.size))
+    // this will generate tables for every nGram size descending from the original down to a unigram. These are to act
+    // as fallbacks in case the current context cannot be found in the original probabilityTable. This is known as the
+    // backoff model, which is a classic NLP strategy.
+    def probabilityTables: List[(ProbabilityTable, Int)] =
+      (0 to tokens.size).toList.map { size =>
+        mkProbabilityTable(context(size))
+      }.zipWithIndex
 
     // When the model is no longer able to find the context, we generate a random word.
-    def randomWord: Map[String, Double] = probabilityTable.toList(Random.nextInt(probabilityTable.size))._2
+    def randomWord: Map[String, Double] = {
+      val table =
+        probabilityTables.find(_._2 == tokens.size).map(_._1).getOrElse(throw new Exception(s"Could not find a probability for nGram size ${tokens.size}"))
+      table.toList(Random.nextInt(table.size))._2
+    }
 
     @tailrec
-    def findPrediction(seed: List[String]): Map[String, Double] =
-      if (seed.isEmpty) randomWord
-      else probabilityTable.get(Context(seed)) match {
-        case Some(pred) => pred
+    def findPrediction(seed: List[String], nGramSize: Int): (Map[String, Double], Int) =
+      if (seed.isEmpty) (randomWord, nGramSize)
+      else probabilityTables.find(_._2 == nGramSize).flatMap(t => t._1.get(Context(seed))) match {
+        case Some(pred) => (pred, nGramSize)
         case None       =>
-          println(s"seed tail is ${seed.tail}")
-          findPrediction(seed.tail)
+          findPrediction(seed.tail, nGramSize - 1)
       }
 
     override def generate(seed: List[String], sentenceLength: Int): String = {
       // recursively get next most likely token from table
       @tailrec
-      def nextToken(seed: List[String], acc: String, times: Int): String = {
-        val predictions: Map[String, Double] = findPrediction(seed)
+      def nextToken(seed: List[String], acc: String, times: Int): String =
         if (times == 0) {
           acc
         } else {
-          val newSeed = predictions.toList.sortBy(-_._2).headOption.map(_._1).getOrElse("No next token found")
-          nextToken(List(newSeed), acc + s" " + newSeed, times - 1)
+          val predictions: (Map[String, Double], Int) = findPrediction(seed, tokens.size)
+          val predictedToken                          = predictions._1.toList.sortBy(-_._2).headOption.map(_._1).getOrElse("No next token found")
+          val newSeed                                 = (seed :+ predictedToken).takeRight(predictions._2)
+          nextToken(newSeed, acc + s" " + predictedToken, times - 1)
         }
-      }
       nextToken(seed, seed.mkString(" "), sentenceLength)
     }
   }

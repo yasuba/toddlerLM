@@ -8,5 +8,5 @@ object TestData {
     .toList
 
   val tokenized: Map[Int, Seq[String]]          = Tokenizer(corpus).tokenizeCSV
-  val contexts: List[Map[Context, Seq[String]]] = tokenized.map(t => ContextBuilder.nGram(1, t._2)).toList
+  val contexts: List[Map[Context, Seq[String]]] = ContextBuilder.nGram(1, tokenized.toList.map(_._2.toList))
 }
