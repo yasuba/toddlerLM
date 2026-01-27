@@ -49,18 +49,27 @@ object Main extends IOApp {
       IO.println(response)
     }
 
+    def samplingPrompt(msg: IO[String]): IO[Boolean] =
+      msg.flatMap {
+        case "yes" => IO(true)
+        case "no"  => IO(false)
+        case _     => samplingPrompt(prompt("Do you want to use sampling? yes or no:"))
+      }
+
     def sentenceGen(generator: Generator, seed: List[String]): IO[Unit] =
       for {
         sentenceLength    <- promptInt("How many words do you want to generate?")
         length             = sentenceLength
-        generatedSentence <- IO(generator.generate(seed, length))
+        samplingResponse   = prompt("Do you want to use sampling? yes or no:")
+        sampling          <- samplingPrompt(samplingResponse)
+        generatedSentence <- IO(generator.generate(seed, length, sampling))
         _                 <- IO.println(s"Most likely sentence will be $generatedSentence")
       } yield ()
 
     def promptLoop: IO[Unit] =
       (for {
         seedInput <- prompt("Enter some words:")
-        seed       = seedInput.split(" ").toList
+        seed       = seedInput.trim.split("\\s+").toList
         tokenized  = Tokenizer(corpus).tokenizeCSV
         generator  = Generator(seed, tokenized)
         task      <- prompt("Do you want a sentence or probabilities? Enter s or p:")

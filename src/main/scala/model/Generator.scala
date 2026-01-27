@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 import scala.util.{Failure, Random, Success, Try}
 
 trait Generator {
-  def generate(seed: List[String], sentenceLength: Int): String
+  def generate(seed: List[String], sentenceLength: Int, useSampling: Boolean): String
   def mkProbabilityTable(context: List[Map[Context, Seq[String]]]): ProbabilityTable
   def context(nGramSize: Int): List[Map[Context, Seq[String]]]
 }
@@ -48,7 +48,7 @@ object Generator {
           findPrediction(seed.tail, nGramSize - 1)
       }
 
-    override def generate(seed: List[String], sentenceLength: Int): String = {
+    override def generate(seed: List[String], sentenceLength: Int, useSampling: Boolean = false): String = {
       // recursively get next most likely token from table
       @tailrec
       def nextToken(seed: List[String], acc: String, times: Int): String =
@@ -56,7 +56,11 @@ object Generator {
           acc
         } else {
           val predictions: (Map[String, Double], Int) = findPrediction(seed, tokens.size)
-          val predictedToken                          = predictions._1.toList.sortBy(-_._2).headOption.map(_._1).getOrElse("No next token found")
+          val orderedPredictions                      = predictions._1.toList.sortBy(-_._2)
+          val predictedToken                          = {
+            val pred = if (!useSampling) orderedPredictions else Random.shuffle(orderedPredictions)
+            pred.headOption.map(_._1).getOrElse("No next token found")
+          }
           val newSeed                                 = (seed :+ predictedToken).takeRight(predictions._2)
           nextToken(newSeed, acc + s" " + predictedToken, times - 1)
         }
