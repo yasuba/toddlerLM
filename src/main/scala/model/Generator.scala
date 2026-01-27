@@ -7,6 +7,8 @@ import scala.util.{Failure, Random, Success, Try}
 
 trait Generator {
   def generate(seed: List[String], sentenceLength: Int): String
+  def mkProbabilityTable(context: List[Map[Context, Seq[String]]]): ProbabilityTable
+  def context(nGramSize: Int): List[Map[Context, Seq[String]]]
 }
 
 object Generator {
