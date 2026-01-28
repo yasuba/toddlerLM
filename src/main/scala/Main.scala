@@ -1,6 +1,6 @@
 import cats.*
 import cats.effect.{ExitCode, IO, IOApp}
-import model.{Context, Generator, Tokenizer}
+import model.{Generator, Tokenizer}
 
 object Main extends IOApp {
   private def prompt(msg: String): IO[String] = IO.blocking {
@@ -26,29 +26,6 @@ object Main extends IOApp {
       loop
     }
 
-    def taskReader(task: String, generator: Generator, seed: List[String], nGramSize: Int): IO[Unit] =
-      task match {
-        case "s" => sentenceGen(generator, seed)
-        case "p" => probabilitiesGen(nGramSize, generator, seed)
-        case _   => IO.println("Please enter either s or p")
-      }
-
-    def formatToTwoDecimalPlaces(d: Double): Double =
-      BigDecimal(d)
-        .setScale(2, BigDecimal.RoundingMode.HALF_UP)
-        .toDouble
-
-    def probabilitiesGen(nGramSize: Int, generator: Generator, seed: List[String]): IO[Unit] = {
-      val context  = generator.context(nGramSize)
-      val table    = generator.mkProbabilityTable(context)
-      val probs    = table.get(Context(seed))
-      val response = probs
-        .flatMap(_.toList.sortBy(-_._2).headOption)
-        .map(sAndP => s"Most probable next token is ${sAndP._1} with a probability of ${formatToTwoDecimalPlaces(sAndP._2 * 100)}%")
-        .getOrElse("Context not found in ProbabilityTable")
-      IO.println(response)
-    }
-
     def samplingPrompt(msg: IO[String]): IO[Boolean] =
       msg.flatMap {
         case "yes" => IO(true)
@@ -72,8 +49,7 @@ object Main extends IOApp {
         seed       = seedInput.trim.split("\\s+").toList
         tokenized  = Tokenizer(corpus).tokenizeCSV
         generator  = Generator(seed, tokenized)
-        task      <- prompt("Do you want a sentence or probabilities? Enter s or p:")
-        _         <- taskReader(task, generator, seed, seed.size)
+        _         <- sentenceGen(generator, seed)
       } yield ()).foreverM
 
     promptLoop.as(ExitCode.Success)
