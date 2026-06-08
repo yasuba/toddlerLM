@@ -36,7 +36,7 @@ object ProbabilityMain extends IOApp {
         seedInput <- prompt("Enter some words:")
         seed       = seedInput.trim.split("\\s+").toList
         tokenized  = Tokenizer(corpus).tokenizeCSV
-        generator  = Generator(seed, tokenized)
+        generator  = Generator(3, tokenized)
         _         <- probabilitiesGen(generator, seed)
       } yield ()).foreverM
 

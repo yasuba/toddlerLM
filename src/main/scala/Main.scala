@@ -9,7 +9,7 @@ object Main extends IOApp {
   }
 
   val corpus: List[String] = scala.io.Source
-    .fromResource("corpus.csv")
+    .fromResource("response-pairs-corpus.csv")
     .getLines()
     .toList
 
@@ -35,20 +35,20 @@ object Main extends IOApp {
 
     def sentenceGen(generator: Generator, seed: List[String]): IO[Unit] =
       for {
-        sentenceLength    <- promptInt("How many words do you want to generate?")
-        length             = sentenceLength
-        samplingResponse   = prompt("Do you want to use sampling? yes or no:")
-        sampling          <- samplingPrompt(samplingResponse)
-        generatedSentence <- IO(generator.generate(seed, length, sampling))
-        _                 <- IO.println(s"Most likely sentence will be $generatedSentence")
+        samplingResponse  <- prompt("Do you want to use sampling? yes or no:")
+        sampling          <- samplingPrompt(IO(samplingResponse))
+        generatedSentence <- IO(generator.generate(seed, sampling))
+        generatedResponse  = generatedSentence.split(" <SEP> ", 2).lift(1).getOrElse(generatedSentence)
+        _                 <- IO.println(generatedResponse)
       } yield ()
 
     def promptLoop: IO[Unit] =
       (for {
         seedInput <- prompt("Enter some words:")
-        seed       = seedInput.trim.split("\\s+").toList
+        seed       = seedInput.trim.split("\\s+").toList :+ "<SEP>"
         tokenized  = Tokenizer(corpus).tokenizeCSV
-        generator  = Generator(seed, tokenized)
+        ngram      = 4
+        generator  = Generator(ngram, tokenized)
         _         <- sentenceGen(generator, seed)
       } yield ()).foreverM
 

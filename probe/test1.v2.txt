@@ -1,0 +1,10 @@
+#Utterance Type01 ResponseGreedy ResponseSampling
+the duck is crying because he lost his mummy | narrative · seen | the duck lost his mummy | the duck lost his mummy
+after you eat me i will be a spoon |narrative · imaginative | after have up is woof | after she this yet for
+why do you work | information · seen |  that's a good question | that's a good question
+i don't want to go to nursery | emotional · seen | you don't want to go to nursery | i don't want to go to nursery
+i want frothy milk | request · seen | you want frothy milk | you want frothy milk
+it's sunny outside | observation · seen | it's sunny outside | it's sunny outside
+i did it all by my own self | observation · seen | you did it all by yourself | you did it all by yourself
+tummy hurts | emotional · seen | your tummy hurts
+do a picture so i can grab a paper in here | unseen | you go is it | you cake bouncing
