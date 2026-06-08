@@ -1,46 +1,35 @@
-## toddlerLM — Understanding next-token prediction with toddler speech
+# toddlerLM
 
-`toddlerLM` is a toy next-token language model written in Scala. It explores how language models work under the hood by 
-experimenting with tokens, context windows (n-grams), probabilities and text generation.
+toddlerLM is a small probabilistic language model trained on a corpus of child–caregiver dialogue. It is built deliberately at the simplest end of the language-modelling spectrum: word-level tokenisation, n-gram
+counting, no neural networks. The point is not to produce strong responses but to use a model whose mechanics are fully inspectable as a vehicle for learning corpus and computational linguistics.
 
-The corpus is based on real (and lightly augmented) things my toddler has said.
+The project sits at the intersection of two traditions. From language modelling, it inherits the standard framework of training, sampling, and evaluation — building probability distributions from counts, generating
+text from those distributions, and measuring model quality through perplexity. From corpus linguistics, it inherits a closer attention to the data itself: how the corpus was constructed, what categories of utterance
+it contains, how vocabulary is distributed across those categories, and what regularities the writing rules introduced. The model is the lens, the corpus is the subject.
 
-#### What it does
+The questions the project is trying to answer are:
 
-At its core, `toddlerLM` is a next-token predictor: given a sequence of tokens, it predicts the most likely next token 
-based on patterns in the training data.
+- **How does the corpus shape the model's behaviour?**
 
-By repeatedly predicting and feeding the output back in, it can also generate text.
+  A probabilistic LM has no architectural opinions about language — whatever structure appears in its outputs has to come from the training data. By keeping the model simple and the corpus small and hand-curated,
+  the relationship between data and behaviour becomes traceable.
 
-This is the same basic mechanism used by large language models like GPT, just in the smallest possible form.
 
-#### How it works
+- **What does the model implicitly encode about response style, without being told?**
 
-1. Tokenise a small toddler corpus
+  The corpus has five categories (narrative, information seeking, emotional acknowledgement, request and demand, observation) and sub-styles within each. Categories are never given to the model as labels. The question
+  is whether sub-style structure survives in the trigram statistics anyway — and Stage 3 found that it does.
 
-2. Build n-gram contexts
 
-3. Count and normalise into probabilities
+- **Where do the writing rules show up in the model?**
 
-4. Predict next tokens
+  The corpus was written under a tight ruleset: echo-default responses, consistent recast of child grammatical errors, pronoun flip, contraction policy. These rules create regularities. Some of them — like pronoun
+  flip — produce visible token co-occurrence patterns the model learns directly. Others may be invisible.
 
-5. Generate text autoregressively
 
-#### Running it
-`sbt run`
+- **What does this specific corpus reveal about probabilistic models in general?**
 
-Enter a seed phrase, for example:
+  Some findings travel beyond this corpus (e.g. local fluency without global coherence is intrinsic to n-gram models). Others are specific to small, formulaic corpora (e.g. trigram contexts becoming unique fast, so
+  the model collapses into a lookup table on seen inputs). Distinguishing the two is part of the work.
 
-> I want
-
-And the model will generate a continuation, e.g.:
-
-> I want a cuddle again play with me
-
-#### Unknown contexts
-
-If the model generates a context it has never seen before, it:
-
-1. Backs off to a smaller context
-
-2. If that fails, picks a random known context and continues
+The project is structured in six stages. Stage 1 designed the corpus categories and writing rules. Stage 2 wrote and annotated the response pairs. Stage 3 extended the model from next-token prediction to input–response generation, refactored to fixed-order n-gram modelling, and characterised the model's two behavioural regimes (recital on seen inputs, low-order random walk on unseen). Stage 4 covers corpus statistics and quantitative evaluation. Stages 5 and 6 will cover qualitative error analysis and an ablation study respectively.
