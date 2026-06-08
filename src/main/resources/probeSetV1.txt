@@ -1,0 +1,40 @@
+
+the duck is crying because he lost his mummy
+seen in training
+narrative
+02
+after you eat me i will be a spoon
+seen · imaginative
+narrative
+03
+why do you work
+seen in training
+information
+04
+i don't want to go to nursery
+seen in training
+emotional
+05
+i want frothy milk
+seen in training
+request
+06
+it's sunny outside
+seen in training
+observation
+07
+i did it all by my own self
+seen in training
+observation
+08
+tummy hurts
+seen in training
+emotional
+09
+do a picture so i can grab a paper in here
+unseen — not in training corpus
+unseen
+These probes are fixed before any model training. Run against every model version in order. Record outputs verbatim. Do not modify this list.
+v1 trained
+v2 ablation
+v3 ablation

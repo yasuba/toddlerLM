@@ -10,7 +10,7 @@ class GeneratorSpec extends FunSuite {
     val generator       = Generator(tokens, tokenizedCorpus)
     val seed            = List("My")
     val sentenceLength  = 2
-    val result          = generator.generate(seed, sentenceLength)
+    val result          = generator.generate(seed, sentenceLength, false)
     val resultTokens    = result.split(" ")
     assertEquals(resultTokens.length, seed.length + sentenceLength)
     assert(result.startsWith("My"))
@@ -22,7 +22,7 @@ class GeneratorSpec extends FunSuite {
     val generator       = Generator(tokens, tokenizedCorpus)
     val seed            = List("My")
     val sentenceLength  = 0
-    val result          = generator.generate(seed, sentenceLength)
+    val result          = generator.generate(seed, sentenceLength, false)
     assertEquals(result, "My")
   }
 
@@ -32,7 +32,18 @@ class GeneratorSpec extends FunSuite {
     val generator       = Generator(tokens, tokenizedCorpus)
     val seed            = List()
     val sentenceLength  = 1
-    val result          = generator.generate(seed, sentenceLength)
+    val result          = generator.generate(seed, sentenceLength, false)
     assert(result.nonEmpty)
+  }
+
+  test("Generator stops generating when next predicted token is <EOS>") {
+    val tokens          =
+      List("i'm excited <SEP> you're excited<EOS>", "i feel happy <SEP> you feel happy <EOS>", "i'm happy <SEP> you're happy <EOS>").flatMap(_.split(" "))
+    val tokenizedCorpus = Map(0 -> tokens)
+    val generator       = Generator(tokens, tokenizedCorpus)
+    val seed            = List("hello")
+    val sentenceLength  = 3
+    val result          = generator.generate(seed, sentenceLength, false)
+    assert(!result.contains("<EOS>"))
   }
 }

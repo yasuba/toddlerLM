@@ -1,0 +1,10 @@
+#Utterance Type01 ResponseGreedy ResponseSampling (3-gram)
+the duck is crying because he lost his mummy | narrative · seen | the duck is sad <EOS> why is he barking | the duck is sad <EOS> why is he barking
+after you eat me i will be a spoon |narrative · imaginative | after i eat you you'll be a spoon <EOS> and then i can stir my tea with you| after i eat you you'll be a spoon <EOS> and then i can stir my tea with you
+why do you work | information · seen |  that's a good question <EOS> why do you think | that's a bird <EOS> can you see it
+i don't want to go to nursery | emotional · seen | you don't like dinner <EOS> you can have one small one | you don't like cabbage <EOS> you don't have to eat it
+i want frothy milk | request · seen | you want to go to the doctors because there's no doctors on the road <EOS> he will have to wait until a doctor is there | you want some help <EOS> what do you like to play
+it's sunny outside | observation · seen | it's sunny outside <EOS> it's a lovely day | it's sunny outside <EOS> it's a lovely day
+i did it all by my own self | observation · seen | you did it all by yourself <EOS> you're so clever | you did it all by yourself <EOS> you're so clever
+tummy hurts | emotional · seen | your tummy hurts <EOS> let me rub it for you | your tummy hurts <EOS> let me have a look
+do a picture so i can grab a paper in here | unseen | do a picture so i can grab a paper in here  | you want a pedal bike <EOS> you can have one small one

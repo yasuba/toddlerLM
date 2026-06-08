@@ -1,0 +1,10 @@
+#Utterance Type01 ResponseGreedy ResponseSampling (2-gram)
+the duck is crying because he lost his mummy | narrative · seen | she had a flower jumper <EOS> yes it was nap time for the lift was having a rest | i'm looking <EOS> what does she want to play catch <EOS> let's wait for it to cool down
+after you eat me i will be a spoon |narrative · imaginative | after bedtime comes the morning <EOS> and then i can jump high <EOS> you're enjoying it | after i eat chocolate now because trains do little poos <EOS> little poos <EOS> little poos <EOS> little poos don't take very long
+why do you work | information · seen |  that's a good question <EOS> why do you think | that's scary <EOS> i'm glad you like biscuits <EOS> biscuits are a nice time
+i don't want to go to nursery | emotional · seen | last time she bringed it | last time you broke your glasses at nursery <EOS> some days are hard
+i want frothy milk | request · seen | you want to go to the doctors because there's no doctors on the toilet because he did a long poo <EOS> what do you think | you dreamed that baby wanted willow's pizza but she gobbled it all up <EOS> what a big dinner
+it's sunny outside | observation · seen | it's too hot <EOS> let's get you a small one | you bought a pink purple one but it hasn't arrived yet <EOS> it lights up when i said to mummy it didn't work because you didn't go upstairs because there was a big one
+i did it all by my own self | observation · seen | you want to go to the doctors because there's no doctors on the toilet because he did a long poo <EOS> what do you think | you want to play
+tummy hurts | emotional · seen | your nappy is full <EOS> let's get you a small one | your balloon popped <EOS> that was kind of him
+do a picture so i can grab a paper in here | unseen | you want to go to the doctors because there's no doctors on the toilet because he did a long poo <EOS> what do you think | you bought a pink purple one but it isn't tomorrow <EOS> it's still today

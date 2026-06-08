@@ -1,0 +1,10 @@
+#Utterance Type01 ResponseGreedy ResponseSampling (4-gram)
+the duck is crying because he lost his mummy | narrative · seen | the duck lost his mummy <EOS> he's looking everywhere for her | the duck lost his mummy <EOS> he's looking everywhere for her
+after you eat me i will be a spoon |narrative · imaginative | after i eat you you'll be a spoon <EOS> and then i can stir my tea with you | after i eat you you'll be a spoon <EOS> and then i can stir my tea with you
+why do you work | information · seen |  that's a good question <EOS> why do you think | that's scary <EOS> i'm glad you like biscuits <EOS> biscuits are a nice time
+i don't want to go to nursery | emotional · seen | you don't want a bath now <EOS> we can have a short one | you don't want to go to bed <EOS> let's get ready for bed
+i want frothy milk | request · seen | you want frothy milk <EOS> i'll make you a small one | you want some chocolate <EOS> chocolate is yummy and sweet
+it's sunny outside | observation · seen | it's sunny outside <EOS> it's a lovely day | it's sunny outside <EOS> it's a lovely day
+i did it all by my own self | observation · seen | you did it all by yourself <EOS> you're so clever | you did it well <EOS> you're so clever
+tummy hurts | emotional · seen | sick bowl <EOS> we'll put one next to her | it's broken because it fell down <EOS> we can try to fix it
+do a picture so i can grab a paper in here | unseen | you want me to play <EOS> yes let's play | you want me to go away <EOS> you're cross with me <EOS> i'm going to stay here
