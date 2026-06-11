@@ -1,0 +1,9 @@
+utterance | sub-type | notes
+ballerinas do this but they don’t hold cake in their hands | observation | she was executing ballet moves and I copied, while holding cake in my hands
+you have to wash your hair | request  | a new type maybe R-instruct which didn’t exist in week 2 data
+you’re not very strong <SEP> you can’t go on aeroplanes | observation (o-evaluate) | response to a question from dad about how big his biceps are, therefore reversal of child-caregiver utterance
+after a sleep time he’s going to be two | narrative | discussing how old beck is (temporal words like after, when, then tend to indicate narrative)
+we should eat those fruits before they get moldier | request (r-negotiate) | she wants to eat fruit
+when I go high up that means i’m a big girl | narrative
+wiggle wiggle jellyfish | observation (o-play)
+mummy can i have you | request
