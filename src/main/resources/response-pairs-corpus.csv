@@ -120,8 +120,8 @@ i hate cabbage yuck <SEP> you don't like cabbage <EOS> you don't have to eat it 
 i don't like green thing <SEP> you don't like the green thing <EOS> you can leave it on the side <END>
 i don't like bedtime <SEP> you don't like bedtime <EOS> bedtime is hard sometimes <END>
 i don't like daddy <SEP> you don't like daddy right now <EOS> daddy loves you <END>
-i don't like dinner yuck <SEP> you don't like dinner <EOS> you can try a little bit <END>
-dinner is yucky <SEP> dinner is yucky to you <EOS> you can try a little bit <END>
+i don't like dinner yuck <SEP> you don't like dinner <EOS> it's hard when you don't like dinner <END>
+dinner is yucky <SEP> dinner is yucky to you <EOS> it's hard when you don't like dinner <END>
 that boy pushed me <SEP> that boy pushed you <EOS> that wasn't kind <END>
 my dog ran away <SEP> your dog ran away <EOS> that's sad <END>
 i'm sick <SEP> you're sick <EOS> it's horrible feeling sick <END>
