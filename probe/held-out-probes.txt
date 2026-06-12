@@ -7,3 +7,12 @@ we should eat those fruits before they get moldier | request (r-negotiate) | she
 when I go high up that means i’m a big girl | narrative
 wiggle wiggle jellyfish | observation (o-play)
 mummy can i have you | request
+i want to fly my kite today | request
+it's missing the red thing <SEP> i can't able to find it | observation | we're trying to fix her kite but there's a part missing
+mummy watch this | observation (o-share)
+thomas's wheel broke off | emotional acknowledgement | her thomas the tank engine toy is broken
+i want to try to fly outside | request | playing with a heavy toy aeroplane which absolutely will not fly
+it tastes a bit stingy because of the hoops | observation | mixing hoops with rice cripsies and crumbled up pancakes with milk and orange squash
+daddy was at the top so he can win the prize | observation | playing in the bath with toys
+baby's too small to go on the ride | narrative (imaginative) | playing in the bath with toys, she introduces an imaginary baby
+let's do the train tracks cause i never do that for ages | request
