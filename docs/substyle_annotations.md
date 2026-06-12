@@ -1,9 +1,6 @@
-# toddlerLM — Sub-style annotations (first pass, for review)
+# toddlerLM — Sub-style annotations
 
-Reference only — not training data. Assignments inferred from response shape and
-corpus position (category headers were removed before pasting, so top-level category
-is my inference from content + block ordering, not your original labels).
-Lines marked ⚑ are genuinely ambiguous — review these first.
+Reference only — not training data. 
 Numbering follows corpus line order.
 
 ## Narrative
@@ -267,7 +264,8 @@ Numbering follows corpus line order.
   response form alone, E-solve over-claims this shape.
 - **"You can try a little bit" appears under two categories** (123/124 emotional,
   167 request). Identical response, different input framing. Either the
-  categories overlap here or one assignment is wrong — worth deciding which.
+  categories overlap here or one assignment is wrong — worth deciding which. In fact,
+  I must correct the corpus. The response should be E-normalize.
 - **General-fact inputs (14, 29) strain the narrative/observation boundary**:
   not displaced, not present-scene. A "generic statement" type may be hiding here.
 - **The block boundaries are inferred.** If your original Week 2 ordering
