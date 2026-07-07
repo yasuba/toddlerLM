@@ -15,4 +15,9 @@ i want to try to fly outside | request | playing with a heavy toy aeroplane whic
 it tastes a bit stingy because of the hoops | observation | mixing hoops with rice cripsies and crumbled up pancakes with milk and orange squash
 daddy was at the top so he can win the prize | observation | playing in the bath with toys
 baby's too small to go on the ride | narrative (imaginative) | playing in the bath with toys, she introduces an imaginary baby
-let's do the train tracks cause i never do that for ages | request
+let's do the train tracks because i never do that for ages | request
+who sings the song on the phone | information-seeking (i-direct) | asking about the in-game music for duplo game
+maybe he can lift it over to her and so her can get the next present | narrative (a)
+all the sky is going to cover the cloud and I think it’s going to rain | observation (o-notice)
+i laughed because i’m shy | narrative (b)
+i like peanut butter because i have fingers | observation (o-like) | causal justification is appearing across input types (preferences, requests) and the taxonomy has no general way to mark it

@@ -1,0 +1,10 @@
+Context = 2
+Some((the duck is crying because he lost his mummy,2.0962562704417813)),
+Some((after you eat me i'll be a spoon,1.5138554797290247)),
+Some((why do you work,1.5404106706080731)),
+Some((i don't want to go to nursery,2.127647396418882)),
+Some((i want frothy milk,1.8921341226018702)),
+Some((it's sunny outside,2.829260627717005)),
+Some((i did it all by my own self,2.0023827721845304)),
+Some((tummy hurts,1.5826138551664326)),
+None) // unseen probe

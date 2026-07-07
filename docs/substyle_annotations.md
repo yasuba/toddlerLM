@@ -35,18 +35,18 @@ Numbering follows corpus line order.
 28. "last time I broke my glasses at nursery" — Narrative B
 29. "dinosaurs bite things" — Narrative A ⚑ same general-fact issue as 14
 30. "at animal day there was a snake" — Narrative A (mirror + question, yes/no rather than wh-)
-31. "Willow didn't touch the snake" — Narrative B
+31. "Ella didn't touch the snake" — Narrative B
 32. "my hands are dirty because I picked my nose" — Narrative B ⚑ response is mirror + action (E-solve shape); input is causal self-report
 33. "maybe it's from the trees" — Narrative A ⚑ input is speculation — response turns it back, I-reflect-adjacent
 34. "it needs to be a party card with lots of balloons" — Narrative A
-35. "today Willow had a flower jumper" — Narrative B
+35. "today Ella had a flower jumper" — Narrative B
 36. "it hurts when I draw on my hand" — E-solve ⚑ sits in narrative block but input reports hurt and response is mirror + action
 37. "this is a pumping up balloon" — O-share ⚑ in narrative block; response is playful question (O-play-adjacent)
 38. "Bluey doesn't have any armpits" — Narrative B
 39. "I'll be the tooth fairy because you're asleep" — Narrative B (imaginative)
 40. "Peppa is in the secret room because she's on her own" — Narrative B
 41. "next time you'll wear a different hair clip but not this one" — Narrative B
-42. "Willow has a medal and last time she bringed it" — Narrative B
+42. "Ella has a medal and last time she bringed it" — Narrative B
 43. "this is where my nursery is supposed to be but they haven't built it yet" — Narrative B
 44. "it's a spinning round slide in the middle of your eye" — Narrative B (imaginative)
 45. "I've got loads of money to buy baby a magazine" — Narrative B (imaginative)
@@ -60,16 +60,16 @@ Numbering follows corpus line order.
 53. "when I was on the airplane and you were giving me a sandwich" — Narrative B
 54. "George is still on the toilet because he did a long poo" — Narrative B
 55. "Thomas isn't on the toilet now because trains do little poos" — Narrative B
-56. "when we lined up in the garden I stood next to Krisshiv" — Narrative B
+56. "when we lined up in the garden I stood next to Chris" — Narrative B
 57. "when we were going home away from Spain because there were dinosaurs in Spain" — Narrative B (imaginative)
-58. "when I get him Santi's already there" — Narrative B
-59. "Santi's going back again because he doesn't stay" — Narrative B
+58. "when I get him Sandy's already there" — Narrative B
+59. "Sandy's going back again because he doesn't stay" — Narrative B
 60. "I think I said to mummy it didn't work because we didn't read the instructions" — Narrative B
-61. "Willow fell on the rocks and her knee was dribbling red" — Narrative B
+61. "Ella fell on the rocks and her knee was dribbling red" — Narrative B
 62. "you've got to stand on one foot because the other one is lava" — Narrative B (imaginative, in-frame)
 63. "this one is really gooder but this one isn't very good" — O-evaluate ⚑ in narrative block; input is judgement, response questions it
 64. "you put the balloon on the car and it brums" — Narrative B ⚑ in-frame play description; response explains rather than extends
-65. "I dreamed that Baby wanted Willow's pizza but she gobbled it all up" — Narrative B
+65. "I dreamed that Baby wanted Ella's pizza but she gobbled it all up" — Narrative B
 66. "while the pizza was cooking I took it out but I wear gloves" — Narrative B
 67. "when I was playing with Mia and we were throwing blocks around" — Narrative B
 68. "I'm going to keep these because I'm going to grow up" — Narrative B
