@@ -35,6 +35,3 @@ do a picture so i can grab a paper in here
 unseen — not in training corpus
 unseen
 These probes are fixed before any model training. Run against every model version in order. Record outputs verbatim. Do not modify this list.
-v1 trained
-v2 ablation
-v3 ablation

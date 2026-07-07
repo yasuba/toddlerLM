@@ -12,4 +12,5 @@ object ContextBuilder {
         acc.updated(Context(context), acc.getOrElse(Context(context), Seq.empty) :+ nextToken)
       }
     }
+
 }

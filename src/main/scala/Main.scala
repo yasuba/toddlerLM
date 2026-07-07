@@ -47,6 +47,7 @@ object Main extends IOApp {
         seedInput <- prompt("Enter some words:")
         seed       = seedInput.trim.split("\\s+").toList :+ "<SEP>"
         tokenized  = Tokenizer(corpus).tokenizeCSV
+        _          = println(s"corpus is $tokenized")
         ngram      = 4
         generator  = Generator(ngram, tokenized)
         _         <- sentenceGen(generator, seed)
