@@ -7,7 +7,7 @@ import scala.annotation.tailrec
 trait Perplexity {
   // Takes a generated response, a gold response from the corpus and the context size and returns a score of how probable the model found it
   def responsePerplexity(input: List[String], goldResponse: List[String], contextSize: Int): Double
-  def getGoldResponse(input: List[String]): Option[List[String]]
+  def getProbesAndGoldResponse(input: List[String], corpus: Map[Int, List[String]]): Option[List[String]]
 }
 
 object Perplexity {
@@ -16,8 +16,8 @@ object Perplexity {
 
       val probabilityBuilder = ProbabilityBuilder(tokenizedCorpus)
 
-      override def getGoldResponse(input: List[String]): Option[List[String]] =
-        tokenizedCorpus.values
+      override def getProbesAndGoldResponse(input: List[String], corpus: Map[Int, List[String]]): Option[List[String]] =
+        corpus.values
           .map { line =>
             val sep = line.indexOf("<SEP>")
             line.take(sep) -> line.drop(sep + 1)

@@ -1,0 +1,25 @@
+Context = 2
+
+Some((ballerinas do this but they don't hold cake in their hands,12.303201007551085)),
+Some((you have to wash your hair,8.49755173549433)),
+None,
+None,
+Some((we should eat those fruits before they get moldier,36.41526367570925)),
+Some((when I go high up that means I'm a big girl,15.162994022569638)),
+Some((wiggle wiggle jellyfish,6.17100579277672)),
+None,
+None,
+None,
+Some((mummy watch this,4.3679267425563495)),
+Some((thomas's wheel broke off,3.5656541608262424)),
+None,
+Some((it tastes a bit stingy because of the hoops,12.860098772918803)),
+Some((daddy was at the top so he can win the prize,66.1476970611812)),
+Some((baby's too small to go on the ride,9.283428354053104)),
+None,
+Some((who sings the song on the phone,14.857853276994973)),
+Some((maybe he can lift it over to her and so her can get the next present,44.80382386767487)),
+Some((all the sky is going to cover the cloud and I think it's going to rain,19.743918837819407)),
+None,
+None)
+
