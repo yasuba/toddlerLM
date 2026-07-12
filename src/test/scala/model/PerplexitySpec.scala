@@ -9,7 +9,7 @@ class PerplexitySpec extends FunSuite {
     val secondTokens    = List("is", "it", "tomorrow", "<SEP>", "no", "it", "isn't", "tomorrow", "<EOS>", "it's", "still", "today", "<END>")
     val tokenizedCorpus = Map(0 -> firstTokens, 1 -> secondTokens)
     val P               = Perplexity(tokenizedCorpus)
-    val result          = P.getGoldResponse(List("is", "it", "tomorrow"))
+    val result          = P.getProbesAndGoldResponse(List("is", "it", "tomorrow"))
     assertEquals(result, Some(List("no", "it", "isn't", "tomorrow", "<EOS>", "it's", "still", "today", "<END>")))
   }
 
