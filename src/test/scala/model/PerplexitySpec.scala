@@ -9,7 +9,7 @@ class PerplexitySpec extends FunSuite {
     val secondTokens    = List("is", "it", "tomorrow", "<SEP>", "no", "it", "isn't", "tomorrow", "<EOS>", "it's", "still", "today", "<END>")
     val tokenizedCorpus = Map(0 -> firstTokens, 1 -> secondTokens)
     val P               = Perplexity(tokenizedCorpus)
-    val result          = P.getProbesAndGoldResponse(List("is", "it", "tomorrow"))
+    val result          = P.getProbesAndGoldResponse(List("is", "it", "tomorrow"), tokenizedCorpus)
     assertEquals(result, Some(List("no", "it", "isn't", "tomorrow", "<EOS>", "it's", "still", "today", "<END>")))
   }
 
@@ -22,7 +22,7 @@ class PerplexitySpec extends FunSuite {
     val P                    = Perplexity(tokenizedCorpus)
     val gold                 = List("we're", "nearly", "there", "<EOS>", "just", "a", "few", "more", "minutes", "<END>")
     val result               = P.responsePerplexity(List("are", "we", "nearly", "there", "yet"), gold, 3)
-    assertEquals(result, 1.0)
+    assertEquals(result, (Some(1.0), 10, 0))
   }
 
   test("Perplexity.responsePerplexity should return >1.0 for a seen probe with more than one possible response") {
@@ -34,7 +34,7 @@ class PerplexitySpec extends FunSuite {
     val P                    = Perplexity(tokenizedCorpus)
     val gold                 = List("no", "it", "isn't", "tomorrow", "<EOS>", "it's", "still", "today", "<END>")
     val result               = P.responsePerplexity(List("is", "it", "tomorrow"), gold, 3)
-    assertEquals(result, 1.080059738892306)
+    assertEquals(result, (Some(1.080059738892306),9,0))
   }
 
 }

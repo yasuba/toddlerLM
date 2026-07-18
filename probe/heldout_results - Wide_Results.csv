@@ -1,0 +1,28 @@
+probe,ppl_n2,oov_n2,ppl_n3,oov_n3,ppl_n4,oov_n4
+after a sleep time he’s going to be two,14.32889037,8,NA,16,NA,16
+when I go high up that means I'm a big girl,15.16299402,11,2.25,17,NA,18
+mummy watch this,4.367926743,5,1.732050808,7,NA,9
+thomas's wheel broke off,3.565654161,8,1,10,NA,11
+i want to fly my kite today,9.181838443,7,2.400540002,12,2.916666667,14
+mummy can i have you,4.108489826,4,3.018349479,7,2.645751311,9
+who sings the song on the phone,14.85785328,12,11,15,NA,16
+all the sky is going to cover the cloud and I think it's going to rain,19.74391884,17,NA,24,NA,24
+i laughed because i'm shy,6.322650047,13,NA,15,NA,15
+maybe he can lift it over to her and so her can get the next present,44.80382387,21,NA,27,NA,27
+we should eat those fruits before they get moldier,36.41526368,16,NA,18,NA,18
+you have to wash your hair,8.497551735,11,3.605551275,15,1,16
+wiggle wiggle jellyfish,6.171005793,6,4.582575695,7,3,8
+baby's too small to go on the ride,9.283428354,10,1.732050808,15,NA,17
+daddy was at the top so he can win the prize,66.14769706,15,NA,19,NA,19
+i like peanut butter because i have fingers,11.98511239,11,3.662532104,17,NA,19
+you're not very strong <EOS> you can't go on aeroplanes,14.5122882,8,1,15,NA,17
+it tastes a bit stingy because of the hoops,12.86009877,11,1,16,NA,17
+it's missing the red thing <EOS> i can't able to find it,15.2619941,10,NA,18,NA,18
+ballerinas do this but they don't hold cake in their hands,12.30320101,17,NA,21,NA,21
+let's do the train tracks because i never do that for ages,24.07078813,9,NA,14,NA,14
+i want to try to fly outside,4.964960544,6,3.004922094,11,1,14
+,,,,,,
+Summary,,,,,,
+Coverage,22,,13,,5,
+Mean Perplexity,16.31442861,,3.07604402,,2.112483596,
+Mean OOV,10.72727273,,15.27272727,,16.22727273,
