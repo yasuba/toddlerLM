@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 
 trait Perplexity {
   // Takes a generated response, a gold response from the corpus and the context size and returns a score of how probable the model found it
-  def responsePerplexity(input: List[String], goldResponse: List[String], contextSize: Int): Double
+  def responsePerplexity(input: List[String], goldResponse: List[String], contextSize: Int): (Option[Double], Int, Int)
   def getProbesAndGoldResponse(input: List[String], corpus: Map[Int, List[String]]): Option[List[String]]
 }
 
@@ -25,7 +25,7 @@ object Perplexity {
           .find(_._1 == input) // exact equality, first match
           .map(_._2)
 
-      override def responsePerplexity(input: List[String], goldResponse: List[String], contextSize: Int): Double = {
+      override def responsePerplexity(input: List[String], goldResponse: List[String], contextSize: Int): (Option[Double], Int, Int) = {
 
         val tables = probabilityBuilder
           .probabilityTables(contextSize, probabilityBuilder.context)
@@ -50,20 +50,21 @@ object Perplexity {
 
         val responseStart = input.length + 1
 
-        val logProbs: List[Double] =
-          (responseStart until full.length).toList.flatMap { i =>
+        val (logProbs, oovCount) =
+          (responseStart until full.length).foldLeft((List.empty[Double], 0)) { case ((logs, oov), i) =>
             val token   = full(i)
             val context = full.slice(i - contextSize, i)
-            if (token == "<SEP>") None
+            if (token == "<SEP>") (logs, oov)
             else probabilityOf(token, context, contextSize) match {
-              case 0.0 => None // OOV — skip (and ideally count)
+              case 0.0 => (logs, oov + 1)
               case p   =>
-                println(s"$token | ctx=${context.mkString(" ")} | p=$p")
-                Some(math.log(p))
+//                println(s"$token | ctx=${context.mkString(" ")} | p=$p")
+                (math.log(p) :: logs, oov)
             }
           }
 
-        math.exp(-logProbs.sum / logProbs.length)
+        if (logProbs.isEmpty) (None, logProbs.length, oovCount)
+        else (Some(math.exp(-logProbs.sum / logProbs.length)), logProbs.length, oovCount)
       }
     }
 }

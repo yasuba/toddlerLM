@@ -1,4 +1,4 @@
-### Stage 4
+### Stage 4 — Quantitative evaluation (Part B) and held-out set
 
 perplexity implemented and validated — seen probe with unique contexts scores exactly 1.0, seen probe with a 
 one-to-many context (is it tomorrow) scores ~1.08, confirming the function detects real distributional spread rather 
@@ -8,3 +8,39 @@ Seen-probe perplexity at n=3 is rarely exactly 1.0. Most probes contain at least
 continuations (e.g. <EOS> let me → rub/have/kiss at 0.33 each; no it isn't → tomorrow/your). The formulaic caregiver 
 register produces shared response-openings, so even verbatim-seen inputs carry residual uncertainty. Exact-1.0 
 perplexity requires a probe whose every context is unique, which is rare.
+
+
+probabilityOf answers one question: "what's the probability of this token in this context?" It returns 0.0 when the answer is "none, even at the bigram floor." That's its whole responsibility. 
+
+Held-out coverage collapses from 100% (n=2) to 23% (n=4): at higher order the model has no probability at all for most held-out responses, because longer contexts are more likely to be unseen. Mean out-of-vocabulary tokens per response rise in step (10.7 → 16.2). The apparent fall in mean perplexity across orders is survivorship — only the shortest, most echo-heavy responses remain scoreable at n=4, so the average is taken over an easier and easier subset. This is the generalisation cliff in its starkest form: not gradual degradation but silence.
+
+
+Held-out probe set built
+
+Collected 22 held-out utterances from your daughter's more recent speech (dated ~5 months after the training corpus), tagged by category, kept in a separate file — never added to training.
+Authored a gold response for each, applying the corpus writing rules (echo-default, consistent recast, pronoun flip). The authoring itself tested whether the ruleset generalises: where a response wrote itself, the rules held; where you hesitated, you'd found a gap.
+Taxonomy strains surfaced (Week 5 material): R-justified needed a genuinely new sub-style (requests with stated reasons — "we should eat those fruits before they get moldier"); R-instruct (directives at caregiver — "you have to wash your hair") and language-play ("wiggle wiggle jellyfish") were absorbed by existing constructions (you're telling me..., O-play); justification is emerging as a modifier orthogonal to category (appears on requests, preferences, observations); in-frame pretend play → respond from inside the fiction. Also: affect is invisible in transcription — two near-identical dinner inputs had different intent (matter-of-fact vs distressed), distinguishable only by prosody that tokenisation destroys; corrected corpus pairs 123/124 to make yuck a learnable signal.
+
+Perplexity implemented and validated
+
+Built a scoring path separate from generation: probabilityOf (single-token, mirrors findPrediction's backoff, bigram floor, 0.0 for OOV) and responsePerplexity (walk the gold response, accumulate log-probs, exp at the end). Returns (Option[Double], scoredCount, oovCount) — perplexity is None when nothing is scoreable.
+Validated: a seen probe with all-unique contexts scores exactly 1.0; is it tomorrow scores ~1.08 because no it isn't has two corpus continuations at 0.5 each. Confirms the function detects real distributional spread, not just memorisation.
+
+Held-out results — the generalisation cliff
+
+Coverage collapses with order: 100% (n=2) → 59% (n=3) → 23% (n=4). At higher order the model has no probability at all for most held-out responses, because longer contexts are more likely unseen. Mean OOV per response rises in step (10.7 → 15.3 → 16.2).
+The raw mean perplexity falls with order (16.3 → 3.1 → 2.1) — this is survivorship, not improvement. Hard probes drop out (nothing scoreable), leaving only short, echo-heavy responses whose few surviving tokens sit in memorised local contexts. The falling mean and collapsing coverage are the same phenomenon.
+Honest reporting therefore needs three numbers per order — coverage, mean OOV, and perplexity-with-scoredCount — never perplexity alone. On the fixed 5-probe subset scoreable at every order, perplexity is 6.58 → 3.32 → 2.11, but that subset is biased-easy, so coverage is the real story, not perplexity.
+Held-out perplexity sits well above seen-probe perplexity (~1.0), confirming no leakage.
+Two OOV failure modes visible per-probe: novel vocabulary (jellyfish, ballerinas, moldier) gives roughly constant OOV across orders; novel transitions give OOV that climbs with order.
+
+Seen vs held-out contrast
+
+On seen probes, perplexity falls toward 1.0 as order rises (more unique contexts → less ambiguity → better fit). On held-out, coverage collapses as order rises. Same knob, opposite effect — the n-gram version of the fit/generalisation (bias-variance) tradeoff.
+
+Still outstanding in Week 4 — corpus statistics (Part A)
+
+Context ambiguity by order (fraction of contexts with a single continuation — quantifies the recital threshold met by hand via is it tomorrow).
+Vocabulary distribution: TTR, hapax proportion, Zipf plot.
+Per-category breakdowns.
+Cross-category bigrams (the sub-style bridges).
