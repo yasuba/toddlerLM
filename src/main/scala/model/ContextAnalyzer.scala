@@ -2,7 +2,7 @@ package model
 
 object ContextAnalyzer {
 
-  type FrequencyTable = Map[Context, Map[String, Int]]
+  private type FrequencyTable = Map[Context, Map[String, Int]]
 
   private def contextMap(listOfMaps: List[Map[Context, Seq[String]]]): Map[Context, Seq[String]] =
     listOfMaps.foldLeft(Map.empty[Context, Seq[String]]) { case (acc, map) =>

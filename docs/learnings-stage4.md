@@ -44,3 +44,13 @@ Context ambiguity by order (fraction of contexts with a single continuation — 
 Vocabulary distribution: TTR, hapax proportion, Zipf plot.
 Per-category breakdowns.
 Cross-category bigrams (the sub-style bridges).
+
+Convention: what "order" means in this codebase
+
+Throughout the code, order = N means an N-token context (the model conditions on N previous tokens). In standard n-gram terminology this is an (N+1)-gram — e.g. order = 3 is a 3-token context, which is a 4-gram in the literature. The naming comes from ContextBuilder.nGram(n, ...), whose parameter is context size, not n-gram order.
+
+Both the perplexity table and the context-ambiguity table use order with this same context-size meaning, so rows at the same order across the two tables refer to identical underlying contexts and can be read side by side. (This is deliberate: the ambiguity numbers explain the perplexity numbers — a high fraction of deterministic contexts at a given order is why perplexity sits near 1.0 at that order.)
+
+Note: the CSV output originally emitted both an n and an order column with identical values — collapsed to a single order column to avoid ambiguity.
+
+The single highest-branching context in the corpus is <SEP> you (17 continuations at order 2) — the point just after a response commits to a you-acknowledgement but before it selects which kind (want / like / feel / did / can...). This is effectively where response category is chosen. It locates the Week 3 "implicit sub-style structure" finding at a specific context: category routing happens at the <SEP> you → ? branch, after which continuations narrow sharply. It's the model's main generative decision point; almost everywhere else is near-deterministic.

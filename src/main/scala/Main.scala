@@ -1,6 +1,6 @@
 import cats.*
 import cats.effect.{ExitCode, IO, IOApp}
-import model.{Generator, Tokenizer}
+import model.{Generator, Statistics, Tokenizer}
 
 object Main extends IOApp {
   private def prompt(msg: String): IO[String] = IO.blocking {
@@ -47,10 +47,12 @@ object Main extends IOApp {
         seedInput <- prompt("Enter some words:")
         seed       = seedInput.trim.split("\\s+").toList :+ "<SEP>"
         tokenized  = Tokenizer(corpus).tokenizeCSV
-        _          = println(s"corpus is $tokenized")
-        ngram      = 4
+//        _          = println(s"corpus is $tokenized")
+        ngram      = 3
         generator  = Generator(ngram, tokenized)
         _         <- sentenceGen(generator, seed)
+        stats      = Statistics(tokenized, ngram).contextAmbiguity
+
       } yield ()).foreverM
 
     promptLoop.as(ExitCode.Success)
