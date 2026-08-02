@@ -34,7 +34,7 @@ class PerplexitySpec extends FunSuite {
     val P                    = Perplexity(tokenizedCorpus)
     val gold                 = List("no", "it", "isn't", "tomorrow", "<EOS>", "it's", "still", "today", "<END>")
     val result               = P.responsePerplexity(List("is", "it", "tomorrow"), gold, 3)
-    assertEquals(result, (Some(1.080059738892306),9,0))
+    assertEquals(result, (Some(1.080059738892306), 9, 0))
   }
 
 }
