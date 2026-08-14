@@ -19,3 +19,6 @@ out/
 
 # misc
 notes.txt
+
+# python stuff
+venv/

@@ -2,7 +2,7 @@ package model
 
 trait Statistics  {
   def contextAmbiguity: AmbiguityStats
-//  def vocabularyStats: Int
+  def vocabularyStats: VocabStats
 }
 object Statistics {
 
@@ -19,7 +19,7 @@ object Statistics {
 
       val order2ContextWith17Continuations = frequencyTable.filter(_._2.size == 17)
 
-      println(s"Key of order2 with 17 continuations is ${order2ContextWith17Continuations.keys}: this is the model's freedom point - where sub-styles diverge")
+      // println(s"Key of order2 with 17 continuations is ${order2ContextWith17Continuations.keys}: this is the model's freedom point - where sub-styles diverge")
 
       val ambiguousCount: Int = frequencyTable.count(_._2.size > 1) // contexts with a number of next token options
 
@@ -45,7 +45,26 @@ object Statistics {
       )
     }
 
-//    override def vocabularyStats: Int = ???
+    override def vocabularyStats: VocabStats = {
+      val allTokens: List[String] =
+        tokenizedCorpus.values.flatten.toList.filterNot(_ == "<SEP>").filterNot(_ == "<EOS>").filterNot(_ == "<END>").filter(_.nonEmpty)
+      val freq: Map[String, Int]  = allTokens.groupBy(identity).view.mapValues(_.size).toMap
+
+      val tokens          = allTokens.length
+      val types           = freq.size
+      val ttr             = types.toDouble / tokens
+      val hapax           = freq.count(_._2 == 1)
+      val hapaxProportion = hapax.toDouble / types
+
+      VocabStats(
+        tokens,
+        freq,
+        types,
+        ttr,
+        hapax,
+        hapaxProportion
+      )
+    }
   }
 }
 
@@ -57,4 +76,13 @@ case class AmbiguityStats(
   fractionDeterministic: Double,
   meanContinuationsWhenAmbiguous: Double,
   maxContinuations: Int
+)
+
+case class VocabStats(
+  tokens: Int,
+  freqMap: Map[String, Int],
+  types: Int,
+  ttr: Double,
+  hapaxCount: Int,
+  hapaxProportion: Double
 )
