@@ -21,7 +21,7 @@ object PerplexityMain extends IOApp {
       val tokGR      = Tokenizer(goldResponses).tokenizeCSV
       val p          = Perplexity(tokenized)
       val inputs     = goldResponses.map(line => line.take(line.indexOf("<SEP>")))
-      val pw = new PrintWriter("heldout_results.csv")
+      val pw = new PrintWriter("results/heldout_results.csv")
       pw.println("probe,order,perplexity,scoredCount,oovCount,goldLength")
 
       List(2, 3, 4).foreach { n =>
