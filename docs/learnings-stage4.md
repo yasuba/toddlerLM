@@ -38,7 +38,7 @@ Seen vs held-out contrast
 
 On seen probes, perplexity falls toward 1.0 as order rises (more unique contexts → less ambiguity → better fit). On held-out, coverage collapses as order rises. Same knob, opposite effect — the n-gram version of the fit/generalisation (bias-variance) tradeoff.
 
-Still outstanding in Week 4 — corpus statistics (Part A)
+### Stage 4 — corpus statistics (Part A)
 
 Context ambiguity by order (fraction of contexts with a single continuation — quantifies the recital threshold met by hand via is it tomorrow).
 Vocabulary distribution: TTR, hapax proportion, Zipf plot.
@@ -59,3 +59,18 @@ The single highest-branching context in the corpus is <SEP> you (17 continuation
 Hapax legomena make up 23% of the vocabulary (141 of 609 types) — nearly a quarter of all word-types appear exactly once. This is the concrete motivation for Kneser-Ney smoothing: for these words, MLE has a single data point and assigns all probability to one continuation with zeros elsewhere, which is precisely the pattern behind the held-out OOV/coverage collapse. KN's type-based discounting is designed for exactly this rare-word tail.
 
 The vocabulary follows Zipf's law broadly, but the head is flatter and fuller than the ideal 1/rank decay: the top ~7 types (you, the, a, is, i, to, it) cluster at comparable high frequencies rather than dropping off sharply. This reflects the formulaic register — pronoun-flip echoes force you/i up, copula templates force is up. Content words also rank unusually high and diagnostically: want (10th) fingerprints the request category, like (9th) the observation category, because (13th) the causal structure in narrative. The frequency ranking encodes the taxonomy. (Note: an empty-string token ranked "1st" at 258 occurrences — a tokenisation artefact from double-spaces — was filtered before plotting.)
+
+Information-seeking is the lexically hardest category: highest TTR (0.34) and highest hapax proportion (0.45) — nearly half its response-vocabulary appears once. This reflects the factual-answer register, which imports unique content words (gravity, Tuesday, bulb) absent elsewhere, unlike the template-driven request/emotional categories.
+
+Prediction: information-seeking is the most lexically diverse and hapax-heavy category, so held-out information-seeking probes should carry the worst OOV / lowest coverage.
+Result: Held-out OOV rate splits the categories along a formulaic-vs-content axis. Request — the most template-driven category — has the lowest novel-word rate (0.56): even new requests reuse the you want X / let's Y frame. The content-carrying categories, narrative and observation, are level and higher (0.69, 0.66), because new narratives and observations bring genuinely new content words (aeroplanes, ballerinas, prize, stingy) regardless of how repetitive their training vocabulary was. The prediction holds at the request end — most formulaic category (by corpus hapax) → lowest held-out OOV. Clean confirmation.
+The information-seeking claim is untestable — 1 probe. The corpus hapax stat predicts it's the hardest, but the held-out set has no power to check it. Say exactly that.
+The narrative anomaly dissolves once you use rate not count — it's level with observation, not anomalously high. So no "structure vs content" special finding needed; the simpler axis explains it.
+request is the easy category by three independent measures — lowest corpus TTR (0.23, most formulaic training vocab), cleanest recital on seen probes (back in Week 3), and now lowest held-out OOV rate (0.56, fewest novel words on unseen inputs). Three separate analyses, corpus-side and model-side, all agreeing that request is the category the model has the firmest grip on.
+
+
+Cross-category bigrams:
+which two-word sequences appear in the responses of more than one category? These are the "bridges" — shared phrasing that lets the model drift between sub-styles during sampling (the that's a → I-direct/I-reflect drift you saw in Week 3, and the <SEP> you category-routing branch). If a bigram appears in many categories, it means the response is not specific to a category.
+Findings (see output of analysis/category_bigrams.py): Cross-category bigram analysis surfaces the specific lexical bridges enabling sampling drift. Beyond generic function-word scaffolding (want to, you can, spanning 4–5 categories), the contentful bridges map onto previously-identified sub-style ambiguities: you don't/don't like (spanning emotional, observation, request — the negative-preference forms whose affect distinction is lost in transcription); let's get/get you (the mirror-plus-action E-solve template that recurs wherever a fixable problem exists, not only in emotional responses); you like (the O-like opener bleeding into adjacent categories). The bridges are measured confirmation of qualitatively-observed category bleed.
+
+
