@@ -16,6 +16,8 @@ object Perplexity {
 
       val probabilityBuilder = ProbabilityBuilder(tokenizedCorpus)
 
+      val controlTokens = Set("<SEP>", "<NARR>", "<INFO>", "<EMO>", "<REQ>", "<OBS>")
+
       override def getProbesAndGoldResponse(input: List[String], corpus: Map[Int, List[String]]): Option[List[String]] =
         corpus.values
           .map { line =>
@@ -54,7 +56,7 @@ object Perplexity {
           (responseStart until full.length).foldLeft((List.empty[Double], 0)) { case ((logs, oov), i) =>
             val token   = full(i)
             val context = full.slice(i - contextSize, i)
-            if (token == "<SEP>") (logs, oov)
+            if (controlTokens.contains(token)) (logs, oov)
             else probabilityOf(token, context, contextSize) match {
               case 0.0 => (logs, oov + 1)
               case p   =>

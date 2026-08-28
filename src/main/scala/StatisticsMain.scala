@@ -8,12 +8,13 @@ object StatisticsMain extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
 
     val corpus: List[String] = scala.io.Source
-      .fromResource("response-pairs-corpus.csv")
+      .fromResource("categorised-corpus.csv")
+//      .fromResource("response-pairs-corpus.csv")
       .getLines()
       .toList
 
     val tokenized = Tokenizer(corpus).tokenizeCSV
-    val pw        = new PrintWriter("results/statistics.csv")
+    val pw        = new PrintWriter("results/categorised-statistics.csv")
     pw.println(s"order,total,deterministic,ambiguous,%deterministic,meanContinuations(ambiguous),maxContinuations")
 
     List(2, 3, 4).foreach { n =>
@@ -26,7 +27,7 @@ object StatisticsMain extends IOApp {
     }
     pw.close()
 
-    val pw2   = new PrintWriter("results/zipf.csv")
+    val pw2   = new PrintWriter("results/categorised-zipf.csv")
     val vocab = Statistics(tokenized, 3).vocabularyStats
 
     val ranked = vocab.freqMap.toList.sortBy(-_._2) // most frequent first

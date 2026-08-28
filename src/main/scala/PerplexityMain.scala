@@ -7,12 +7,13 @@ object PerplexityMain extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
 
     val corpus: List[String] = scala.io.Source
-      .fromResource("response-pairs-corpus.csv")
+//      .fromResource("response-pairs-corpus.csv")
+      .fromResource("categorised-corpus.csv")
       .getLines()
       .toList
 
     val goldResponses: List[String] = scala.io.Source
-      .fromResource("held-out-probes-and-responses.txt")
+      .fromResource("categorised-held-out.csv")
       .getLines()
       .toList
 
@@ -21,7 +22,7 @@ object PerplexityMain extends IOApp {
       val tokGR      = Tokenizer(goldResponses).tokenizeCSV
       val p          = Perplexity(tokenized)
       val inputs     = goldResponses.map(line => line.take(line.indexOf("<SEP>")))
-      val pw = new PrintWriter("results/heldout_results.csv")
+      val pw = new PrintWriter("results/catgorised-heldout_results.csv")
       pw.println("probe,order,perplexity,scoredCount,oovCount,goldLength")
 
       List(2, 3, 4).foreach { n =>
