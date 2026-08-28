@@ -9,7 +9,8 @@ object Main extends IOApp {
   }
 
   val corpus: List[String] = scala.io.Source
-    .fromResource("response-pairs-corpus.csv")
+//    .fromResource("response-pairs-corpus.csv")
+    .fromResource("categorised-corpus.csv")
     .getLines()
     .toList
 

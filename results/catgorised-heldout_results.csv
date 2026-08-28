@@ -1,0 +1,67 @@
+probe,order,perplexity,scoredCount,oovCount,goldLength
+after a sleep time he’s going to be two <NARR>,2,13.292661199494967,8,8,16
+when I go high up that means I'm a big girl <NARR>,2,12.604418731182978,7,11,18
+mummy watch this <OBS>,2,8.76977976806117,4,5,9
+thomas's wheel broke off <EMO>,2,3.5656541608262424,3,8,11
+i want to fly my kite today <REQ>,2,8.136456544973731,8,7,15
+mummy can i have you <REQ>,2,3.578398368305717,7,4,11
+who sings the song on the phone <INFO>,2,9.656447787122925,4,12,16
+all the sky is going to cover the cloud and I think it's going to rain <OBS>,2,19.743918837819407,7,17,24
+i laughed because i'm shy <NARR>,2,15.083103128998362,2,13,15
+maybe he can lift it over to her and so her can get the next present <NARR>,2,36.11402683153384,6,21,27
+we should eat those fruits before they get moldier <REQ>,2,36.41526367570925,2,16,18
+you have to wash your hair <REQ>,2,9.60410540645191,6,11,17
+wiggle wiggle jellyfish <OBS>,2,6.171005792776717,3,6,9
+baby's too small to go on the ride <NARR>,2,9.283428354053104,7,10,17
+daddy was at the top so he can win the prize <NARR>,2,66.1476970611812,4,15,19
+i like peanut butter because i have fingers <OBS>,2,11.62780524082449,8,11,19
+you're not very strong <OBS> <EOS> you can't go on aeroplanes,2,14.512288200997794,9,8,17
+it tastes a bit stingy because of the hoops <OBS>,2,12.860098772918803,6,11,17
+it's missing the red thing <OBS> <EOS> i can't able to find it,2,15.261994100298498,8,10,18
+ballerinas do this but they don't hold cake in their hands <OBS>,2,12.303201007551085,4,17,21
+let's do the train tracks because i never do that for ages <REQ>,2,24.632980798164443,5,9,14
+i want to try to fly outside <REQ>,2,4.670725637877933,10,6,16
+after a sleep time he’s going to be two <NARR>,3,64.99999999999999,1,15,16
+when I go high up that means I'm a big girl <NARR>,3,4.031128874149275,2,16,18
+mummy watch this <OBS>,3,1.2247448713915892,2,7,9
+thomas's wheel broke off <EMO>,3,1.0,1,10,11
+i want to fly my kite today <REQ>,3,1.6098915196554684,4,11,15
+mummy can i have you <REQ>,3,2.094438151469498,5,6,11
+who sings the song on the phone <INFO>,3,7.625146368618583,2,14,16
+all the sky is going to cover the cloud and I think it's going to rain <OBS>,3,NA,0,24,24
+i laughed because i'm shy <NARR>,3,16.25,1,14,15
+maybe he can lift it over to her and so her can get the next present <NARR>,3,64.99999999999999,1,26,27
+we should eat those fruits before they get moldier <REQ>,3,NA,0,18,18
+you have to wash your hair <REQ>,3,3.3619754067989636,3,14,17
+wiggle wiggle jellyfish <OBS>,3,4.582575694955841,2,7,9
+baby's too small to go on the ride <NARR>,3,1.7320508075688774,2,15,17
+daddy was at the top so he can win the prize <NARR>,3,NA,0,19,19
+i like peanut butter because i have fingers <OBS>,3,2.190110605469347,3,16,19
+you're not very strong <OBS> <EOS> you can't go on aeroplanes,3,1.0,2,15,17
+it tastes a bit stingy because of the hoops <OBS>,3,1.0,1,16,17
+it's missing the red thing <OBS> <EOS> i can't able to find it,3,NA,0,18,18
+ballerinas do this but they don't hold cake in their hands <OBS>,3,NA,0,21,21
+let's do the train tracks because i never do that for ages <REQ>,3,37.99999999999999,1,13,14
+i want to try to fly outside <REQ>,3,2.6469030759312213,5,11,16
+after a sleep time he’s going to be two <NARR>,4,NA,0,16,16
+when I go high up that means I'm a big girl <NARR>,4,2.25,1,17,18
+mummy watch this <OBS>,4,1.0,1,8,9
+thomas's wheel broke off <EMO>,4,NA,0,11,11
+i want to fly my kite today <REQ>,4,1.8708286933869707,2,13,15
+mummy can i have you <REQ>,4,1.9129311827723892,3,8,11
+who sings the song on the phone <INFO>,4,NA,0,16,16
+all the sky is going to cover the cloud and I think it's going to rain <OBS>,4,NA,0,24,24
+i laughed because i'm shy <NARR>,4,NA,0,15,15
+maybe he can lift it over to her and so her can get the next present <NARR>,4,NA,0,27,27
+we should eat those fruits before they get moldier <REQ>,4,NA,0,18,18
+you have to wash your hair <REQ>,4,1.0,2,15,17
+wiggle wiggle jellyfish <OBS>,4,3.0000000000000004,1,8,9
+baby's too small to go on the ride <NARR>,4,NA,0,17,17
+daddy was at the top so he can win the prize <NARR>,4,NA,0,19,19
+i like peanut butter because i have fingers <OBS>,4,2.6363636363636367,1,18,19
+you're not very strong <OBS> <EOS> you can't go on aeroplanes,4,NA,0,17,17
+it tastes a bit stingy because of the hoops <OBS>,4,NA,0,17,17
+it's missing the red thing <OBS> <EOS> i can't able to find it,4,NA,0,18,18
+ballerinas do this but they don't hold cake in their hands <OBS>,4,NA,0,21,21
+let's do the train tracks because i never do that for ages <REQ>,4,NA,0,14,14
+i want to try to fly outside <REQ>,4,1.4888055529538273,3,13,16
