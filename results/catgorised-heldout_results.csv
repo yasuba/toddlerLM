@@ -15,9 +15,9 @@ wiggle wiggle jellyfish <OBS>,2,6.171005792776717,3,6,9
 baby's too small to go on the ride <NARR>,2,9.283428354053104,7,10,17
 daddy was at the top so he can win the prize <NARR>,2,66.1476970611812,4,15,19
 i like peanut butter because i have fingers <OBS>,2,11.62780524082449,8,11,19
-you're not very strong <OBS> <EOS> you can't go on aeroplanes,2,14.512288200997794,9,8,17
+you're not very strong <EOS> you can't go on aeroplanes <OBS>,2,12.56926216179027,9,8,17
 it tastes a bit stingy because of the hoops <OBS>,2,12.860098772918803,6,11,17
-it's missing the red thing <OBS> <EOS> i can't able to find it,2,15.261994100298498,8,10,18
+it's missing the red thing <EOS> i can't able to find it <OBS>,2,13.737848993793532,8,10,18
 ballerinas do this but they don't hold cake in their hands <OBS>,2,12.303201007551085,4,17,21
 let's do the train tracks because i never do that for ages <REQ>,2,24.632980798164443,5,9,14
 i want to try to fly outside <REQ>,2,4.670725637877933,10,6,16
@@ -37,9 +37,9 @@ wiggle wiggle jellyfish <OBS>,3,4.582575694955841,2,7,9
 baby's too small to go on the ride <NARR>,3,1.7320508075688774,2,15,17
 daddy was at the top so he can win the prize <NARR>,3,NA,0,19,19
 i like peanut butter because i have fingers <OBS>,3,2.190110605469347,3,16,19
-you're not very strong <OBS> <EOS> you can't go on aeroplanes,3,1.0,2,15,17
+you're not very strong <EOS> you can't go on aeroplanes <OBS>,3,3.191252149429954,3,14,17
 it tastes a bit stingy because of the hoops <OBS>,3,1.0,1,16,17
-it's missing the red thing <OBS> <EOS> i can't able to find it,3,NA,0,18,18
+it's missing the red thing <EOS> i can't able to find it <OBS>,3,9.285714285714285,1,17,18
 ballerinas do this but they don't hold cake in their hands <OBS>,3,NA,0,21,21
 let's do the train tracks because i never do that for ages <REQ>,3,37.99999999999999,1,13,14
 i want to try to fly outside <REQ>,3,2.6469030759312213,5,11,16
@@ -59,9 +59,9 @@ wiggle wiggle jellyfish <OBS>,4,3.0000000000000004,1,8,9
 baby's too small to go on the ride <NARR>,4,NA,0,17,17
 daddy was at the top so he can win the prize <NARR>,4,NA,0,19,19
 i like peanut butter because i have fingers <OBS>,4,2.6363636363636367,1,18,19
-you're not very strong <OBS> <EOS> you can't go on aeroplanes,4,NA,0,17,17
+you're not very strong <EOS> you can't go on aeroplanes <OBS>,4,NA,0,17,17
 it tastes a bit stingy because of the hoops <OBS>,4,NA,0,17,17
-it's missing the red thing <OBS> <EOS> i can't able to find it,4,NA,0,18,18
+it's missing the red thing <EOS> i can't able to find it <OBS>,4,NA,0,18,18
 ballerinas do this but they don't hold cake in their hands <OBS>,4,NA,0,21,21
 let's do the train tracks because i never do that for ages <REQ>,4,NA,0,14,14
 i want to try to fly outside <REQ>,4,1.4888055529538273,3,13,16
