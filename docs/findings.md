@@ -58,7 +58,7 @@ can turn the question back to the child."why do you think i work" allows for a m
 
 Finally, when authoring the responses, there were decisions to be made about the format. Most punctuation was stripped 
 since markers and context allow the model to infer rather than relying on standard punctuation. The markers used were
-<SEP> to separate the input from the response, <END> to mark the end of a pair, <EOS> for sentence breaks, where usually
+`<SEP>` to separate the input from the response, `<END>` to mark the end of a pair, `<EOS>` for sentence breaks, where usually
 there might be a full-stop or comma. For example:
 
 ``` 
@@ -127,8 +127,6 @@ They diverge when the distributional spread is greater, which mostly occurred at
 It should be noted that the “sampling” implementation was actually uniform random selection, treating every candidate token with equal weight, ignoring their original probabilities, unlike multinomial sampling. 
 
 # Stage 4: Corpus statistics
-
-## Qualitative evaluation
 
 ### Context ambiguity by order
 In this stage of the project, I began using corpus statistics to examine context ambiguity and perplexity. In the
@@ -247,7 +245,7 @@ mostly generic and generated responses were memorised from training. This is why
 honest measure of held-out performance — the perplexity mean flatters the model by averaging over an easier and easier
 surviving subset.
 
-## Stage 5: Behavioural probes
+## Stage 5: Behaviours and limitations
 
 ### Model generation
 
@@ -327,7 +325,7 @@ Because the structure is mostly implicit already, I'd expect explicit tokens to 
 where the implicit signal is weakest — the low-frequency, high-diversity categories (information-seeking, from
 my per-category stats) rather than the already-well-handled formulaic ones (request)
 
-To test, I will supply the categories at generation time (e.g. tell the model "this is an emotional input, <EMO>").
+To test, I will supply the categories at generation time (e.g. tell the model "this is an emotional input, `<EMO>`").
 This tests "does knowing the category help?"
 
 In the future, I would like to change the model so that it can predict the category itself, as the first step of
@@ -337,21 +335,28 @@ generation. This way the model learns to classify and respond. However, I don't 
 
 Initially, I placed category tokens at the start of the input. However, this failed as front-placed category tokens
 fall outside the context window for every scored response token, so they cannot influence the response's probability.
-After this finding, I moved the category token to the end of the input, before the <SEP> token, allowing the category
+After this finding, I moved the category token to the end of the input, before the `<SEP>` token, allowing the category
 token to appear in the context when the model generates its initial response tokens.
 
-Perplexity results after adding category tokens at the end of inputs and before responses (before the <SEP> token),
+Perplexity results after adding category tokens at the end of inputs and before responses (before the `<SEP>` token),
 showed a mixed result. Some responses scored lower perplexity, e.g. when I go high up NARR: 15.16 → 12.60.
 But some went higher e.g. you have to wash your hair REQ: 8.50 → 9.60
 And some made no difference e.g. wiggle wiggle jellyfish.
 
 Increasing perplexity is caused by effectively reducing the seen contexts for a token, since the contexts are now split
 into the five categories. The category token adds a token to the context preceding each response, so a context like
-"<SEP> you", which occurred a lot in the corpus, is now split into five category-specific versions, each seen a fifth
+"`<SEP>` you", which occurred a lot in the corpus, is now split into five category-specific versions, each seen a fifth
 as often.
 
 What this suggests is that I've traded a strong generic signal for a weaker category-specific one, and whether that's a
 win may depend on the category's data density.
+
+### Ablation results:
+
+narrative −0.59 (improved)
+request −0.03 (neutral)
+observation +0.67 (degraded)
+emotional, information — n=1, not interpretable
 
 ### Per-category analysis
 
@@ -360,7 +365,7 @@ Since the findings were somewhat nuanced rather than a binary result, I will pos
 
 Examining each category, I wanted to see if some benefited more from category tokens than others. Categories with more
 training data such as Observation and Narrative should either show improvement or remain neutral. Whereas sparse
-categories or ones relying on the shared <SEP> context should degrade.
+categories or ones relying on the shared `<SEP>` context should degrade.
 
 The results showed that there was no uniform pattern at the category level. Narrative improved slightly (−0.59), Request
 was neutral (−0.03), Observation degraded (+0.67); Emotional and Information had too few held-out probes (1 each) to
@@ -382,14 +387,6 @@ Two caveats on the findings:
   conclusions about per-category trends.
 - Supplying the category before generation adds a limitation to the study, since a real system wouldn't have this, but
   I already noted this as a scope decision.
-
-
-## Ablation results:
-
-narrative −0.59 (improved)
-request −0.03 (neutral)
-observation +0.67 (degraded)
-emotional, information — n=1, not interpretable
 
 ## Qualitative findings
 
