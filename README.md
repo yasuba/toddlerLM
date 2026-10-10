@@ -1,42 +1,47 @@
 # toddlerLM
 
-toddlerLM is a small probabilistic language model trained on a corpus of child–caregiver dialogue. It is built deliberately at the simplest end of the language-modelling spectrum: word-level tokenisation, n-gram
-counting, no neural networks. The point is not to produce strong responses but to use a model whose mechanics are fully inspectable as a vehicle for learning corpus and computational linguistics.
+A small probabilistic language model trained on a corpus of child–caregiver
+dialogue, built deliberately at the simplest end of the spectrum: word-level
+n-gram counting, no neural networks, allowing its mechanics to be fully inspectable.
+The point isn't perfect responses; it's a transparent model used as a vehicle
+for learning corpus and computational linguistics. The model is the lens, the
+corpus is the subject.
 
-The project sits at the intersection of two traditions. From language modelling, it inherits the standard framework of training, sampling, and evaluation — building probability distributions from counts, generating
-text from those distributions, and measuring model quality through perplexity. From corpus linguistics, it inherits a closer attention to the data itself: how the corpus was constructed, what categories of utterance
-it contains, how vocabulary is distributed across those categories, and what regularities the writing rules introduced. The model is the lens, the corpus is the subject.
+## What it found
 
-The questions the project is trying to answer are:
+The main findings of the project were that inputs and responses are categorised
+into 'sub-styles' which were never explicitly given to the model, but regardless
+the model conformed to, as they were implicit in the n-gram statistics. 
+Also, when encountering an entirely new input, the model falls off a "generalisation
+cliff". The coverage collapses at higher n-gram orders. The nature of the project's 
+corpus itself (formulaic, lots of rare words) is the reason for the model's behaviour.
 
-- **How does the corpus shape the model's behaviour?**
+## The corpus
 
-  A probabilistic LM has no architectural opinions about language — whatever structure appears in its outputs has to come from the training data. By keeping the model simple and the corpus small and hand-curated,
-  the relationship between data and behaviour becomes traceable.
+Five inductively-derived categories (narrative, information-seeking, emotional
+acknowledgement, request/demand, observation), hand-authored under a fixed
+writing ruleset. **Note:** the child utterances are real; the caregiver
+responses were LLM-generated, not recorded from a parent. If I'd used my own
+real responses to these utterances, they likely would have been very far from the 
+standard CDS responses! This is fine for studying how the model learns from its 
+training text, but means the corpus reflects how an LLM writes a caregiver, not 
+how caregivers actually talk.
 
+## Read more
 
-- **What does the model implicitly encode about response style, without being told?**
+Full write-up: [findings.md](./docs/findings.md) — method, findings per stage, error
+analysis, limitations.
 
-  The corpus has five categories (narrative, information seeking, emotional acknowledgement, request and demand, observation) and sub-styles within each. Categories are never given to the model as labels. The question
-  is whether sub-style structure survives in the trigram statistics anyway — and Stage 3 found that it does.
+## Running it
 
+To run the Scala project, `sbt run` then pick one of the options:
+1. Main is the language model, enter a child-like input and receive a caregiver response.
+2. PerplexityMain calculates the perplexity and prints to a file.
+3. StatisticsMain calculates statistics and Zipfian distribution and prints to files.
 
-- **Where do the writing rules show up in the model?**
-
-  The corpus was written under a tight ruleset: echo-default responses, consistent recast of child grammatical errors, pronoun flip, contraction policy. These rules create regularities. Some of them — like pronoun
-  flip — produce visible token co-occurrence patterns the model learns directly. Others may be invisible.
-
-
-- **What does this specific corpus reveal about probabilistic models in general?**
-
-  Some findings travel beyond this corpus (e.g. local fluency without global coherence is intrinsic to n-gram models). Others are specific to small, formulaic corpora (e.g. trigram contexts becoming unique fast, so
-  the model collapses into a lookup table on seen inputs). Distinguishing the two is part of the work.
-
-The project is structured in six stages. Stage 1 designed the corpus categories and writing rules. Stage 2 wrote and annotated the response pairs. Stage 3 extended the model from next-token prediction to input–response 
-generation, refactored to fixed-order n-gram modelling, and characterised the model's two behavioural regimes (recital on seen inputs, low-order random walk on unseen). Stage 4 covers corpus statistics and quantitative 
-evaluation. Stages 5 and 6 will cover qualitative error analysis and an ablation study respectively.
-
-A note on the data: while the child utterances are from a real child, the caregiver responses in this corpus were generated by an LLM, not recorded from a real parent. That's fine for some questions and a problem for 
-others. It's fine for questions about how the model learns from its training text — whatever style is in the corpus, the model picked it up from there, and that finding holds regardless of where the text came from. 
-It's a problem for questions about real caregiver speech — like whether models can tell what a parent's utterance is really doing (a request dressed up as a question, etc.) — because this corpus shows how an LLM writes 
-a caregiver, not how caregivers actually talk. Answering those questions would need real recorded data, like the CHILDES archive.
+To run the Python project: 
+```
+cd analysis
+source venv/bin/activate
+python3 <filename>
+```

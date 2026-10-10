@@ -24,4 +24,8 @@ notes.txt
 venv/
 
 # notes
-docs/
+docs/learnings*
+docs/substyle_annotations.md
+docs/stage-0-readme.md
+docs/future-work.md
+names.txt
