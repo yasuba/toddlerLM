@@ -27,7 +27,7 @@ transparent toy project could help me build understanding of the opaque giants.
 I did not choose the categories before building the corpus, and the categories were not derived from standard CDS 
 taxonomies. I derived them inductively from the data itself. After reading through the utterances, they naturally fell 
 into five groups: Information-seeking, Request and Demand, Observation, Narrative and Emotional Acknowledgement.
-Information-seeking: straightforward W-? type questions, why? what? where? etc. Request and Demand: in 2-year-old
+Information-seeking: straightforward W-? type questions, why? what? where? etc. Request and Demand: in 3-year-old
 parlance these utterances were mostly of the 'I want x' variety, but essentially the child is trying to obtain or achieve
 something. Emotional Acknowledgement: the child is upset and needs validation and reassurance. Observation: a fact 
 typically about the child's current state or environment, anchored to the present. Narrative: these utterances are 
