@@ -11,7 +11,7 @@ comes from ContextBuilder.nGram(n, ...), whose parameter is context size, not n-
 ## Stage 1: Corpus design
 
 ### What's the corpus? 
-For my corpus, I collected utterances made by my 2-year-old daughter. These were a variety of 
+For my corpus, I collected utterances made by my 3-year-old daughter. These were a variety of 
 phrases - questions, statements and conversations recorded over a period of two to three months. After recording the
 utterance, I then wrote a caregiver response based on the scaffold of Child-Directed Speech (CDS), often known as 
 Parentese. This type of speech is somewhat formulaic, it includes expansions and recasts on the child's utterance, and 
